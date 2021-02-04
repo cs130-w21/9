@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import logo from './OpenCourse.svg';
+import history from './history.js';
 
 function Copyright() {
   return (
@@ -22,6 +23,15 @@ function Copyright() {
       {'.'}
     </Typography>
   );
+}
+
+function viewClicked(albumNum) {
+  // console.log(albumNum)
+  // history.push('/CoursePage')
+  history.push({
+    pathname: '/CoursePage',
+    state: { detail: albumNum }
+});
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -91,7 +101,7 @@ export default function Album() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={() => viewClicked(card)}>
                       View
                     </Button>
                     <Button size="small" color="primary">
