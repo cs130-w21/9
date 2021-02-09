@@ -33,7 +33,6 @@ function viewClicked(albumNum) {
     state: { detail: albumNum }
 });
 }
-
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -102,6 +101,7 @@ export default function Album() {
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary" onClick={() => viewClicked(card)}>
+                    <Button size="small" color="primary">
                       View
                     </Button>
                     <Button size="small" color="primary">
