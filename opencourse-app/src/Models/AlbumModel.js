@@ -1,4 +1,4 @@
-export class AlbumModel {
+class AlbumModel {
     constructor() {
       this.cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     }
@@ -7,4 +7,6 @@ export class AlbumModel {
         return this.cards;
     }
   }
+
+  export default AlbumModel;
  
