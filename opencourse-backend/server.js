@@ -1,3 +1,18 @@
+const firebase = require("firebase/app");
+const auth = require("firebase/auth");
+const firestore = require("firebase/firestore");
+
+var firebaseConfig = {
+	apiKey: "AIzaSyBdr9MQT-_lfD5s1vneXAIO1oG3M8LWDHk",
+	authDomain: "cs130-project.firebaseapp.com",
+	projectId: "cs130-project",
+	storageBucket: "cs130-project.appspot.com",
+	messagingSenderId: "670284860247",
+	appId: "1:670284860247:web:8f1edb1e12fdee15820c12"
+};
+
+firebase.initializeApp(firebaseConfig);
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -13,6 +28,10 @@ app.use("/courses", courseRoutes);
 
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
+});
+
+app.route("/").get((req, res) => {
+	console.log("test1");
 });
 
 courseRoutes.route("/").get(function (req, res) {
