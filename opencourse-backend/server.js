@@ -35,6 +35,14 @@ async function x(){
 	});
 }
 
+coursesRef.get().then((snapshot) => {
+	const data = snapshot.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data(),
+	}));
+	console.log("All data in 'courses' collection", data);
+});
+
 x();
 
 app.listen(PORT, function () {
