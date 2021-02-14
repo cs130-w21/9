@@ -23,9 +23,9 @@ const PORT = 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const courseRoutes = express.Router();
+const courseRoute = require('./routes/course');
 
-app.use("/courses", courseRoutes);
+app.use("/courses", courseRoute);
 
 const coursesRef = db.collection("course");
 
@@ -51,26 +51,4 @@ app.listen(PORT, function () {
 
 app.route("/").get((req, res) => {
 	console.log("test1");
-});
-
-courseRoutes.route("/").get(function (req, res) {
-  console.log("testing");
-});
-
-courseRoutes.route("/:name").get(function (req, res) {
-  	coursesRef.get().then((snapshot) => {
-		const data = snapshot.docs.map((doc) => ({
-			id: doc.id,
-			...doc.data(),
-		}));
-		//res.send(data);
-		for(var i = 0; i < data.length; i++){
-			if(data[i].name == req.params.name){
-				res.send(data[i]);
-				console.log("req.params.name:", req.params.name);
-				console.log(`data[${i}]`, data[i]);
-			}
-		}
-		//console.log("All data in 'courses' collection", data);
-	});
 });
