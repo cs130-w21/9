@@ -37,6 +37,7 @@ async function x(){
 	});
 }
 
+/*
 coursesRef.get().then((snapshot) => {
 	const data = snapshot.docs.map((doc) => ({
 		id: doc.id,
@@ -44,8 +45,7 @@ coursesRef.get().then((snapshot) => {
 	}));
 	console.log("All data in 'courses' collection", data);
 });
-
-x();
+*/
 
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);

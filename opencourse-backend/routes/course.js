@@ -8,7 +8,13 @@ const coursesRef = db.collection("course");
 
 
 router.route("/").get(function (req, res) {
-  console.log("testing");
+  	coursesRef.get().then((snapshot) => {
+		const data = snapshot.docs.map((doc) => ({
+			id: doc.id,
+			...doc.data(),
+		}));
+		res.send(data);
+	});
 });
 
 router.route("/:name").get(function (req, res) {
