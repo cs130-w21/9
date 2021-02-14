@@ -24,8 +24,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const courseRoute = require('./routes/course');
+const userRoute = require('./routes/user');
 
 app.use("/courses", courseRoute);
+app.use("/user", userRoute);
 
 const coursesRef = db.collection("course");
 
