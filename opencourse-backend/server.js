@@ -1,6 +1,6 @@
 const firebase = require("firebase/app");
 const auth = require("firebase/auth");
-const firestore = require("firebase/firestore");
+require("firebase/firestore");
 
 var firebaseConfig = {
 	apiKey: "AIzaSyBdr9MQT-_lfD5s1vneXAIO1oG3M8LWDHk",
@@ -12,6 +12,7 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 const express = require("express");
 const app = express();
@@ -25,6 +26,16 @@ app.use(bodyParser.json());
 const courseRoutes = express.Router();
 
 app.use("/courses", courseRoutes);
+
+const coursesRef = db.collection("course");
+
+async function x(){
+	await coursesRef.doc('course2').set({
+		course_id: 1, name: "math", author: "jasonhuan", body: {}, description: "", date_created: "2/13/21"
+	});
+}
+
+x();
 
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
