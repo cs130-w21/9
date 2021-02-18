@@ -23,9 +23,11 @@ const PORT = 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const courseRoutes = express.Router();
+const courseRoute = require('./routes/course');
+const userRoute = require('./routes/user');
 
-app.use("/courses", courseRoutes);
+app.use("/courses", courseRoute);
+app.use("/user", userRoute);
 
 const coursesRef = db.collection("course");
 
@@ -51,6 +53,7 @@ app.listen(PORT, function () {
 
 app.route("/").get((req, res) => {
 	console.log("test1");
+<<<<<<< HEAD
 });
 
 courseRoutes.route("/").get(function (req, res) {
@@ -74,3 +77,6 @@ courseRoutes.route("/:name").get(function (req, res) {
 		//console.log("All data in 'courses' collection", data);
 	});
 });
+=======
+});
+>>>>>>> d8bb6f30fd2569c5d94dcdd8f7c308b78d515703
