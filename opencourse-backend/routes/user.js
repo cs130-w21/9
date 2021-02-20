@@ -25,7 +25,15 @@ router.route("/:username").get(function (req, res) {
 				console.log(`data[${i}]`, data[i]);
 			}
 		}
-		//console.log("All data in 'courses' collection", data);
+		
+	});
+});
+
+router.route("/signup").post((req, res) => {
+	console.log("req.body.username:", req.body.username);
+	console.log("req.body.email_address", req.body.email_address);
+	coursesRef.doc(`${req.body.username}`).set({
+		email_address: req.body.email_address, numCourseCreated: 0, saved_courses: [], username: req.body.username
 	});
 });
 

@@ -8,10 +8,16 @@ const coursesRef = db.collection("course");
 
 
 router.route("/").get(function (req, res) {
-  console.log("testing");
+  	coursesRef.get().then((snapshot) => {
+		const data = snapshot.docs.map((doc) => ({
+			id: doc.id,
+			...doc.data(),
+		}));
+		res.send(data);
+	});
 });
 
-router.route("/:name").get(function (req, res) {
+router.route("/:id").get(function (req, res) {
   	coursesRef.get().then((snapshot) => {
 		const data = snapshot.docs.map((doc) => ({
 			id: doc.id,
@@ -19,9 +25,9 @@ router.route("/:name").get(function (req, res) {
 		}));
 		//res.send(data);
 		for(var i = 0; i < data.length; i++){
-			if(data[i].name == req.params.name){
+			if(data[i].course_id == req.params.id){
 				res.send(data[i]);
-				console.log("req.params.name:", req.params.name);
+				console.log("req.params.id:", req.params.id);
 				console.log(`data[${i}]`, data[i]);
 			}
 		}
