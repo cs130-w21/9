@@ -53,30 +53,5 @@ app.listen(PORT, function () {
 
 app.route("/").get((req, res) => {
 	console.log("test1");
-<<<<<<< HEAD
-});
 
-courseRoutes.route("/").get(function (req, res) {
-  console.log("testing");
 });
-
-courseRoutes.route("/:name").get(function (req, res) {
-  	coursesRef.get().then((snapshot) => {
-		const data = snapshot.docs.map((doc) => ({
-			id: doc.id,
-			...doc.data(),
-		}));
-		//res.send(data);
-		for(var i = 0; i < data.length; i++){
-			if(data[i].name == req.params.name){
-				res.send(data[i]);
-				console.log("req.params.name:", req.params.name);
-				console.log(`data[${i}]`, data[i]);
-			}
-		}
-		//console.log("All data in 'courses' collection", data);
-	});
-});
-=======
-});
->>>>>>> d8bb6f30fd2569c5d94dcdd8f7c308b78d515703

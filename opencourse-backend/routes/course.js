@@ -35,4 +35,17 @@ router.route("/:id").get(function (req, res) {
 	});
 });
 
+router.route("/create").post((req, res) => {
+	console.log("req.body", req.body);
+	coursesRef.doc(`${req.body.course_id}`).set({
+		course_id: req.body.course_id, 
+		author: req.body.author, 
+		date_created: req.body.date_created, 
+		description: req.body.description,
+		length: req.body.length,
+		name: req.body.name,
+		body: req.body.body
+	});
+})
+
 module.exports = router;

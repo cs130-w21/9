@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 const db = firebase.firestore();
-const coursesRef = db.collection("user");
+const userRef = db.collection("user");
 
 
 router.route("/").get(function (req, res) {
@@ -12,7 +12,7 @@ router.route("/").get(function (req, res) {
 });
 
 router.route("/:username").get(function (req, res) {
-  	coursesRef.get().then((snapshot) => {
+  	userRef.get().then((snapshot) => {
 		const data = snapshot.docs.map((doc) => ({
 			id: doc.id,
 			...doc.data(),
@@ -32,7 +32,7 @@ router.route("/:username").get(function (req, res) {
 router.route("/signup").post((req, res) => {
 	console.log("req.body.username:", req.body.username);
 	console.log("req.body.email_address", req.body.email_address);
-	coursesRef.doc(`${req.body.username}`).set({
+	userRef.doc(`${req.body.username}`).set({
 		email_address: req.body.email_address, numCourseCreated: 0, saved_courses: [], username: req.body.username
 	});
 });
