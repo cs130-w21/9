@@ -1,27 +1,27 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import logo from '../OpenCourse.svg';
-import history from '../history.js';
-import CourseListModel from '../Models/CourseListModel.js'
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Link from "@material-ui/core/Link";
+import logo from "../OpenCourse.svg";
+import history from "../history.js";
+import CourseListModel from "../Models/CourseListModel.js";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         OpenCourse
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -30,9 +30,9 @@ function viewClicked(albumNum) {
   // console.log(albumNum)
   // history.push('/CoursePage')
   history.push({
-    pathname: '/CoursePage',
-    state: { detail: albumNum }
-});
+    pathname: "/CoursePage",
+    state: { detail: albumNum },
+  });
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -51,12 +51,13 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: 15,
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   cardContent: {
     flexGrow: 1,
@@ -74,12 +75,12 @@ export default function CourseList() {
 
   return (
     <React.Fragment>
-      <style>{'body { background-color: gray; }'}</style>
+      <style>{"body { background-color: gray; }"}</style>
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-          <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" />
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
@@ -98,11 +99,16 @@ export default function CourseList() {
                       Heading
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      This is a media card. You can use this section to describe
+                      the content.
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary" onClick={() => viewClicked(card)}>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => viewClicked(card)}
+                    >
                       View
                     </Button>
                     <Button size="small" color="primary">
@@ -117,7 +123,12 @@ export default function CourseList() {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="textSecondary"
+          component="p"
+        >
           CS130 Group 9
         </Typography>
         <Copyright />
