@@ -129,6 +129,8 @@ export default function CreateAndEdit() {
               defaultValue={currModule.desc}
               style={{ margin: "1%" }}
               onChange={handleModuleDescChange}
+              multiline
+              rows={4}
             />
             <TextField
               id="outlined-basic"
@@ -229,10 +231,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     border: "2px solid #000",
     backgroundColor: theme.palette.background.paper,
-    height: "20%",
-    width: "50%",
+    minWidth: "50%",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: "5%",
+    display: "flex",
+    flexDirection: "column",
   },
   container: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
