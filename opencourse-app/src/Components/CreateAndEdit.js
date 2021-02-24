@@ -14,6 +14,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ModuleCard from "./ModuleCard";
+import Modal from "@material-ui/core/Modal";
 
 export default function CreateAndEdit() {
   const classes = useStyles();
@@ -22,9 +23,45 @@ export default function CreateAndEdit() {
       id: 1,
       title: "first modulee",
       desc: "this is the first module",
-      link: "http://www.google.com",
+      link: "https://pictureofahotdog.com/",
     },
   ]);
+
+  const [open, setOpen] = useState(false);
+  const [currModule, setCurrModule] = useState({
+    id: undefined,
+    title: "",
+    desc: "",
+    link: "",
+  });
+  const [currModuleIndex, setCurrModuleIndex] = useState(0);
+
+  const handleModuleTitleChange = (e) => {
+    setCurrModule({ ...currModule, title: e.target.value });
+  };
+
+  const handleModuleDescChange = (e) => {
+    setCurrModule({ ...currModule, desc: e.target.value });
+  };
+  const handleModuleLinkChange = (e) => {
+    setCurrModule({ ...currModule, link: e.target.value });
+  };
+
+  const handleOpen = (index) => {
+    const current = modules[index];
+    console.log("selected module", current);
+    setCurrModule(current);
+    setCurrModuleIndex(index);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    const newModules = modules;
+    newModules[currModuleIndex] = currModule;
+    console.log(newModules);
+    setModules(newModules);
+    setOpen(false);
+  };
 
   const newModule = () => {
     const list = modules.concat({
@@ -46,7 +83,12 @@ export default function CreateAndEdit() {
 
   const modulesList = modules.map((module, index) => (
     <Grid item key={index} className={classes.moduleCard}>
-      <ModuleCard index={index} module={module} deleteModule={deleteModule} />
+      <ModuleCard
+        index={index}
+        module={module}
+        deleteModule={deleteModule}
+        openModal={handleOpen}
+      />
     </Grid>
   ));
 
@@ -59,6 +101,45 @@ export default function CreateAndEdit() {
         height="100vh"
         className={classes.grid}
       >
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          height={"100vh"}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div className={classes.paper}>
+            <TextField
+              id="outlined-basic"
+              label="Module Title"
+              variant="outlined"
+              defaultValue={currModule.title}
+              style={{ margin: "1%" }}
+              onChange={handleModuleTitleChange}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Module Description"
+              variant="outlined"
+              defaultValue={currModule.desc}
+              style={{ margin: "1%" }}
+              onChange={handleModuleDescChange}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Module Link"
+              variant="outlined"
+              defaultValue={currModule.link}
+              style={{ margin: "1%" }}
+              onChange={handleModuleLinkChange}
+            />
+          </div>
+        </Modal>
         <Grid item className={classes.submitButton}>
           <Button
             variant="contained"
@@ -121,7 +202,7 @@ export default function CreateAndEdit() {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     height: "100vh",
@@ -145,9 +226,17 @@ const useStyles = makeStyles({
     justifyContent: "flex-end",
   },
   moduleCard: { margin: 10, width: "90%" },
+  paper: {
+    border: "2px solid #000",
+    backgroundColor: theme.palette.background.paper,
+    height: "20%",
+    width: "50%",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
   container: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     border: 0,
     borderRadius: 3,
   },
-});
+}));

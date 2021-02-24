@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -12,21 +12,29 @@ import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function ModuleCard(props) {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [link, setLink] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+
   return (
     <Card>
       <CardHeader
-        avatar={<Avatar aria-label="recipe">{props.index + 1}</Avatar>}
+        avatar={<Avatar aria-label="moduleNumber">{props.index + 1}</Avatar>}
         action={
-          <IconButton aria-label="settings">
+          <IconButton
+            aria-label="settings"
+            onClick={() => props.openModal(props.index)}
+          >
             <MoreVertIcon />
           </IconButton>
         }
-        title={module.title}
+        title={props.module.title}
         // subheader="September 14, 2016"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {module.desc}
+          {props.module.desc}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
