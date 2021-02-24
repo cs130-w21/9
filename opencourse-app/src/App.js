@@ -13,7 +13,7 @@ export default class Routes extends Component {
         <Switch>
           <Route path="/" exact component={CourseList} />
           <Route path="/CoursePage" component={CoursePage} />
-          <Route path="/courseTest" component={CreateAndEdit} />
+          <Route path="/createEdit" component={CreateAndEdit} />
         </Switch>
       </Router>
     );
