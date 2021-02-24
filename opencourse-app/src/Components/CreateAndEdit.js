@@ -21,7 +21,7 @@ export default function CreateAndEdit() {
       id: 1,
       title: "first modulee",
       desc: "this is the first module",
-      link: "www.google.com",
+      link: "http://www.google.com",
     },
   ]);
 
@@ -65,7 +65,7 @@ export default function CreateAndEdit() {
           {/* <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton> */}
-          <IconButton aria-label="link">
+          <IconButton aria-label="link" href={module.link} target="_blank">
             <ShareIcon />
           </IconButton>
           <IconButton
