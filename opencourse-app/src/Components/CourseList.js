@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -27,8 +27,6 @@ function Copyright() {
 }
 
 function viewClicked(albumNum) {
-  // console.log(albumNum)
-  // history.push('/CoursePage')
   history.push({
     pathname: '/CoursePage',
     state: { detail: albumNum }
@@ -68,10 +66,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const courseListModel = new CourseListModel();
-
 export default function CourseList() {
   const classes = useStyles();
+  const [issues, setIssues] = useState([]);
+  const getIssues = async () => {
+      try {
+          const data = await courseListModel.getData();
+          setIssues(data) 
+      } catch(e) {
+          console.log(e);
+      }
+  };
 
+useEffect(() => {
+  getIssues();
+}, [])
   return (
     <React.Fragment>
       <style>{'body { background-color: gray; }'}</style>
@@ -85,9 +94,9 @@ export default function CourseList() {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {courseListModel.getCards().map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
+            {issues.map((card) => (
+              <Grid item key={card.name} xs={12} sm={6} md={4}>
+                <Card className={classes.card.name}>
                   <CardMedia
                     className={classes.cardMedia}
                     image={logo}
@@ -95,14 +104,14 @@ export default function CourseList() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {card.name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      {card.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary" onClick={() => viewClicked(card)}>
+                    <Button size="small" color="primary" onClick={() => viewClicked(card.name)}>
                       View
                     </Button>
                     <Button size="small" color="primary">
