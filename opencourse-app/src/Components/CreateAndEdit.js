@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 export default function CreateAndEdit() {
   const classes = useStyles();
@@ -30,7 +27,7 @@ export default function CreateAndEdit() {
 
   const newModule = () => {
     const list = modules.concat({
-      id: modules.length + 1,
+      id: modules.length + 1, //need to change this to the id in db.
       title: "",
       desc: "",
       link: "",
@@ -39,9 +36,16 @@ export default function CreateAndEdit() {
     setModules(list);
   };
 
+  const deleteModule = (id) => {
+    console.log("deleting", id);
+    const newList = modules.filter((item) => item.id !== id);
+
+    setModules(newList);
+  };
+
   const modulesList = modules.map((module, index) => (
-    <Grid item className={module.moduleCard}>
-      <Card className={module.moduleCard}>
+    <Grid item key={index} className={classes.moduleCard}>
+      <Card>
         <CardHeader
           avatar={<Avatar aria-label="recipe">{index + 1}</Avatar>}
           action={
@@ -61,12 +65,16 @@ export default function CreateAndEdit() {
           {/* <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton> */}
-          <IconButton aria-label="share">
+          <IconButton aria-label="link">
             <ShareIcon />
           </IconButton>
-          {/* <IconButton aria-label="show more">
-            <ExpandMoreIcon />
-          </IconButton> */}
+          <IconButton
+            aria-label="delete"
+            style={{ marginLeft: "auto" }}
+            onClick={() => deleteModule(module.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
         </CardActions>
       </Card>
     </Grid>
@@ -81,14 +89,22 @@ export default function CreateAndEdit() {
         height="100vh"
         className={classes.grid}
       >
-        <div className={classes.submitButton}>
-          <Grid item>
-            <Button variant="contained" color="primary">
-              Save
-            </Button>
-          </Grid>
-        </div>
-        <Grid item>
+        <Grid item className={classes.submitButton}>
+          <Button
+            variant="contained"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(0,212,255,1) 15%, rgba(65,96,255,1) 100%)",
+              color: "white",
+            }}
+          >
+            Save
+          </Button>
+        </Grid>
+        <Grid item style={{ width: "90%" }}>
+          <Typography variant="h4">Course Title:</Typography>
+        </Grid>
+        <Grid item className={classes.gridItem}>
           <TextField
             className={classes.textInput}
             id="outlined-basic"
@@ -96,7 +112,10 @@ export default function CreateAndEdit() {
             variant="outlined"
           />
         </Grid>
-        <Grid item>
+        <Grid item style={{ width: "90%" }}>
+          <Typography variant="h6">Course Description:</Typography>
+        </Grid>
+        <Grid item className={classes.gridItem} style={{ marginTop: "1%" }}>
           <TextField
             className={classes.textInput}
             id="outlined-basic"
@@ -106,12 +125,20 @@ export default function CreateAndEdit() {
             rows={4}
           />
         </Grid>
+        <Grid item style={{ width: "90%" }}>
+          <Typography variant="h6">Course Modules:</Typography>
+        </Grid>
         <Grid container direction="column" alignItems="center">
           {modulesList}
         </Grid>
         <Grid item>
           <Button
-            style={{ margin: 20 }}
+            style={{
+              margin: 20,
+              background:
+                "radial-gradient(circle, rgba(0,212,255,1) 30%, rgba(39,74,252,1) 100%)",
+              color: "white",
+            }}
             onClick={newModule}
             variant="contained"
             color="primary"
@@ -138,16 +165,16 @@ const useStyles = makeStyles({
     marginTop: "5%",
   },
   textInput: {
-    margin: "3%",
-    width: 600,
+    width: "100%",
   },
+  gridItem: { margin: "3%", width: "90%" },
   submitButton: {
-    width: 600,
+    width: "90%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end",
   },
-  moduleCard: { margin: "3%", width: 900 },
+  moduleCard: { margin: 10, width: "90%" },
   container: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     border: 0,
