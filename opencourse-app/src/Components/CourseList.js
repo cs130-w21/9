@@ -97,7 +97,7 @@ export default function CourseList() {
           <Grid container spacing={4}>
             {issues.map((card) => (
               <Grid item key={card.name} xs={12} sm={6} md={4}>
-                <Card className={classes.card.name}>
+                <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
                     image={logo}

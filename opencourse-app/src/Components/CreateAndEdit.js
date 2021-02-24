@@ -148,15 +148,9 @@ export default function CreateAndEdit() {
           <Button
             variant="contained"
             style={{
-<<<<<<< HEAD
               background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
               color: "white",
               boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .4)",
-=======
-              background:
-                "radial-gradient(circle, rgba(0,212,255,1) 15%, rgba(65,96,255,1) 100%)",
-              color: "white",
->>>>>>> cbe266e35b69bc8a3b3446def23c8afdeb6b150c
             }}
           >
             Save Changes
@@ -200,21 +194,12 @@ export default function CreateAndEdit() {
           <Button
             style={{
               margin: 20,
-<<<<<<< HEAD
               // background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
               color: "#2196F3",
               boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .4)",
             }}
             onClick={newModule}
             variant="outlined"
-=======
-              background:
-                "radial-gradient(circle, rgba(0,212,255,1) 30%, rgba(39,74,252,1) 100%)",
-              color: "white",
-            }}
-            onClick={newModule}
-            variant="contained"
->>>>>>> cbe266e35b69bc8a3b3446def23c8afdeb6b150c
             color="primary"
           >
             Add Module
