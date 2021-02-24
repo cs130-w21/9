@@ -18,6 +18,8 @@ import Modal from "@material-ui/core/Modal";
 
 export default function CreateAndEdit() {
   const classes = useStyles();
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
   const [modules, setModules] = useState([
     {
       id: 1,
@@ -163,6 +165,8 @@ export default function CreateAndEdit() {
             id="outlined-basic"
             label="Course Title"
             variant="outlined"
+            defaultValue={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </Grid>
         <Grid item style={{ width: "90%" }}>
@@ -174,8 +178,10 @@ export default function CreateAndEdit() {
             id="outlined-basic"
             label="Course Decription"
             variant="outlined"
+            defaultValue={desc}
             multiline
             rows={4}
+            onChange={(e) => setDesc(e.target.value)}
           />
         </Grid>
         <Grid item style={{ width: "90%" }}>
