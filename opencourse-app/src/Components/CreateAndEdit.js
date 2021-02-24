@@ -13,6 +13,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
+import ModuleCard from "./ModuleCard";
 
 export default function CreateAndEdit() {
   const classes = useStyles();
@@ -45,38 +46,7 @@ export default function CreateAndEdit() {
 
   const modulesList = modules.map((module, index) => (
     <Grid item key={index} className={classes.moduleCard}>
-      <Card>
-        <CardHeader
-          avatar={<Avatar aria-label="recipe">{index + 1}</Avatar>}
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={module.title}
-          // subheader="September 14, 2016"
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {module.desc}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          {/* <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton> */}
-          <IconButton aria-label="link" href={module.link} target="_blank">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            aria-label="delete"
-            style={{ marginLeft: "auto" }}
-            onClick={() => deleteModule(module.id)}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
+      <ModuleCard index={index} module={module} deleteModule={deleteModule} />
     </Grid>
   ));
 
@@ -98,7 +68,7 @@ export default function CreateAndEdit() {
               color: "white",
             }}
           >
-            Save
+            Save Changes
           </Button>
         </Grid>
         <Grid item style={{ width: "90%" }}>
