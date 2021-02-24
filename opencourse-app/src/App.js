@@ -5,6 +5,7 @@ import CourseList from "./Components/CourseList.js";
 import CoursePage from "./Components/CoursePage.js";
 import history from "./history.js";
 import CreateAndEdit from "./Components/CreateAndEdit.js";
+<<<<<<< HEAD
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -12,10 +13,13 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { shadows } from "@material-ui/system";
+=======
+>>>>>>> cbe266e35b69bc8a3b3446def23c8afdeb6b150c
 
 export default class Routes extends Component {
   render() {
     return (
+<<<<<<< HEAD
       <>
         <AppBar
           position="static"
@@ -48,6 +52,15 @@ export default class Routes extends Component {
           </Switch>
         </Router>
       </>
+=======
+      <Router history={history}>
+        <Switch>
+          <Route path="/" exact component={CourseList} />
+          <Route path="/CoursePage" component={CoursePage} />
+          <Route path="/createEdit" component={CreateAndEdit} />
+        </Switch>
+      </Router>
+>>>>>>> cbe266e35b69bc8a3b3446def23c8afdeb6b150c
     );
   }
 }
