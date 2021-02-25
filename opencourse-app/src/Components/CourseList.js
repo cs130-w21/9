@@ -113,7 +113,10 @@ export default function CourseList() {
                     <Button
                       size="small"
                       color="primary"
-                      onClick={() => viewClicked(card.name)}
+                      onClick={() => {
+                        console.log(card.course_id)
+                        
+                        return viewClicked(card.course_id)}}
                     >
                       View
                     </Button>
