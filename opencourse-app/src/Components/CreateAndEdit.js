@@ -148,9 +148,9 @@ export default function CreateAndEdit() {
           <Button
             variant="contained"
             style={{
-              background:
-                "radial-gradient(circle, rgba(0,212,255,1) 15%, rgba(65,96,255,1) 100%)",
+              background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
               color: "white",
+              boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .4)",
             }}
           >
             Save Changes
@@ -194,12 +194,12 @@ export default function CreateAndEdit() {
           <Button
             style={{
               margin: 20,
-              background:
-                "radial-gradient(circle, rgba(0,212,255,1) 30%, rgba(39,74,252,1) 100%)",
-              color: "white",
+              // background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+              color: "#2196F3",
+              boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .4)",
             }}
             onClick={newModule}
-            variant="contained"
+            variant="outlined"
             color="primary"
           >
             Add Module
