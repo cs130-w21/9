@@ -17,9 +17,10 @@ import ModuleCard from "./ModuleCard";
 import Modal from "@material-ui/core/Modal";
 
 export default function CreateAndEdit() {
+
   const classes = useStyles();
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  const [title, setTitle] = useState('a');
+  const [desc, setDesc] = useState('a');
   const [modules, setModules] = useState([
     {
       id: 1,
@@ -74,6 +75,7 @@ export default function CreateAndEdit() {
     });
 
     setModules(list);
+    
   };
 
   const deleteModule = (id) => {
@@ -102,6 +104,7 @@ export default function CreateAndEdit() {
         alignItems="center"
         height="100vh"
         className={classes.grid}
+        data-testid = "addmoduleextension"
       >
         <Modal
           open={open}
@@ -114,7 +117,7 @@ export default function CreateAndEdit() {
             justifyContent: "center",
             alignItems: "center",
           }}
-	  data-testid = "addmoduleextension"
+	  
         >
           <div className={classes.paper}>
             <TextField
@@ -153,6 +156,7 @@ export default function CreateAndEdit() {
               background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
               color: "white",
               boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .4)",
+
             }}
           >
             Save Changes
@@ -203,7 +207,7 @@ export default function CreateAndEdit() {
             onClick={newModule}
             variant="outlined"
             color="primary"
-	    data-testid="addmodulebutton"
+            data-testid="addmodulebutton"
           >
             Add Module
           </Button>

@@ -16,5 +16,6 @@ it('renders opening page', () => {
 
   const elem = screen.getAllByText(/OpenCourse/i);
   expect(elem[0]).toBeInTheDocument();
+  
 });
 

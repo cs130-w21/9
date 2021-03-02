@@ -107,7 +107,9 @@ export default function CourseList() {
                     <Typography gutterBottom variant="h5" component="h2">
                       {card.name}
                     </Typography>
-                    <Typography>{card.description}</Typography>
+                    <Typography> 
+                      {card.description} 
+                    </Typography>
                   </CardContent>
                   <CardActions>
                     <Button
