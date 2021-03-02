@@ -114,6 +114,7 @@ export default function CreateAndEdit() {
             justifyContent: "center",
             alignItems: "center",
           }}
+	  data-testid = "addmoduleextension"
         >
           <div className={classes.paper}>
             <TextField
@@ -122,7 +123,8 @@ export default function CreateAndEdit() {
               variant="outlined"
               defaultValue={currModule.title}
               style={{ margin: "1%" }}
-              onChange={handleModuleTitleChange}
+              onChange={handleModuleTitleChange } 
+	      
             />
             <TextField
               id="outlined-basic"
@@ -201,6 +203,7 @@ export default function CreateAndEdit() {
             onClick={newModule}
             variant="outlined"
             color="primary"
+	    data-testid="addmodulebutton"
           >
             Add Module
           </Button>
