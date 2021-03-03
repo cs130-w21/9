@@ -1,7 +1,9 @@
 version: 2.1
 
 defaults: &defaults
-  working_directory: ~/repo
+  working_directory: ~/130-project/9
+  docker:
+    - image: circleci/node:10.14.2
 
 orbs:
   node: circleci/node@3.0.0
@@ -9,42 +11,22 @@ orbs:
 jobs:
   core:
     <<: *defaults
-    working_directory: ~/repo
+    working_directory: ~/130-project/9
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
       - run: npm ci
-
       - run: npm run build
-
       - run: npm run test:ci
-
       - run: npm run start
       
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      - persist_to_workspace:
-          root: ~/repo
-          paths: .
-
-
-workflows:
-  version: 2
-  core:
-    jobs:
-      - core:
-          filters:
-            branches:
-              only:
-                - testing
