@@ -3,6 +3,7 @@
     "nodemon": "^2.0.7"
   },
 
+
   "scripts": {
     "build": "cd ./opencourse-app && npm run build",
     "frontend": "cd ./opencourse-app && npm run start",
