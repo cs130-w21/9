@@ -25,7 +25,7 @@ jobs:
       #- rm ../package-lock.json      
       #- node/install-npm
       - run: npm ci
-      - run: npm run build
+      - run: CI= npm run build
 
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
