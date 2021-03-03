@@ -29,6 +29,15 @@ const userRoute = require('./routes/user');
 app.use("/courses", courseRoute);
 app.use("/user", userRoute);
 
+const ENV = process.env.NODE_ENV;
+
+if (ENV == 'production') {
+  app.use(express.static(path.join(__dirname, '../opencourse-app/build')));
+  app.use((req, res) => {
+	res.sendFile(path.join(__dirname, '../opencourse-app/build/index/html'))});
+  
+}
+
 const coursesRef = db.collection("course");
 
 async function x(){

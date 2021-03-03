@@ -1,5 +1,13 @@
 {
   "dependencies": {
     "nodemon": "^2.0.7"
+  },
+
+  "scripts": {
+    "build": "cd ./opencourse-app && npm run build",
+    "frontend": "cd ./opencourse-app && npm run start",
+    "backend": "cd ./opencourse-backend && nodemon server.js",
+    "test": "(cd ./opencourse-backend && npm run test) & (cd ./opencourse-app && npm test)",
+    "start": "npm run backend & npm run frontend"
   }
 }
