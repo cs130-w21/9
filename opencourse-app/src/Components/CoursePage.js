@@ -3,37 +3,14 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import logo from "../OpenCourse.svg";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuIcon from '@material-ui/icons/Menu';
-import { borders } from '@material-ui/system';
 import CoursePageModel from '../Models/CoursePageModel.js';
-import clsx from 'clsx';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import HomeIcon from '@material-ui/icons/Home';
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Avatar from "@material-ui/core/Avatar";
 import CardHeader from "@material-ui/core/CardHeader";
-const drawerWidth = 220;
 
 function Copyright() {
   return (
@@ -120,17 +97,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
-const card1 = [1];
-
-
-
-
-
-
-
-
 const coursePageModel = new CoursePageModel();
 
 export default function CoursePage() {
@@ -158,122 +124,16 @@ export default function CoursePage() {
       getmodules();
     }, []);
 
-
-
-    const [state, setState] = React.useState({
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
-    });
-
-
-
-
-    const toggleDrawer = (anchor, open) => (event) => {
-      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-      }
-  
-      setState({ ...state, [anchor]: open });
-    };
-
-
-
-
-
-    const list = (anchor) => (
-      <div
-        className={clsx(classes.list, {
-          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-        })}
-        role="presentation"
-        onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-      >
-        <List>
-          {['Home', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
   return (
-    
 
-
-    
-   // <div>course page {location.state.detail}</div>
     <React.Fragment>
         <style>{'body { background-color:  #F0EEF1; }'}</style> 
         <main>
         <div className={classes.root} variant='outlined'>
-      <div>
+        </div>
 
-
-        
-      
-
-
-      {[" "].map((anchor) => (
-        
-        <React.Fragment key={anchor}>
-          <AppBar position="sticky" style ={{backgroundColor: 'white'}}>
-          <Toolbar >
-          <IconButton edge="start" className={classes.menuButton} style ={{color: '#2196F3'}} aria-label="menu" onClick={toggleDrawer(anchor, true)}>{anchor}
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h4" className={classes.title} style ={{color: '#3e4551'}}>
-            OpenCourse
-          </Typography>
-          <Button style ={{color: '#2196F3'}}>Login</Button>
-        </Toolbar>
-        </AppBar>
-          
-          <IconButton edge="end" className={classes.menuButton} style ={{color: '#2196F3'}} aria-label="menu" onClick={toggleDrawer(anchor, true)}>{anchor}
-          
-          </IconButton>
-          
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
-
-
-
-    
-
-
-
-
-      
-    </div>
-
-
-    
-    
     <img src={logo} alt="Logo" width="140" height="130" style={{float : "left"}}/>
     <h1 style={{ textAlign: "center", fontFamily: "Times New Roman",fontSize: 50, fontStyle: "normal", minHeight: "1px", color: '#3e4551', }}>   {title}</h1>
-
-          
-        
-      
-    
 
           {/* Hero unit */} 
           <div className={classes.cardContent }>
@@ -326,11 +186,6 @@ export default function CoursePage() {
           </Container>
         </main>
 
-
-       
-
-
-
         {/* Footer */}
         <footer className={classes.footer}>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
@@ -340,7 +195,5 @@ export default function CoursePage() {
         </footer>
         {/* End footer */}
       </React.Fragment>
-
-
   );
 }

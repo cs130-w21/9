@@ -33,6 +33,14 @@ function viewClicked(albumNum) {
   });
 }
 
+function editClicked(albumNum) {
+  console.log("Clocked")
+  history.push({
+    pathname: "/createEdit",
+    state: { detail: albumNum },
+  });
+}
+
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -107,22 +115,19 @@ export default function CourseList() {
                     <Typography gutterBottom variant="h5" component="h2">
                       {card.name}
                     </Typography>
-                    <Typography> 
-                      {card.description} 
-                    </Typography>
+                    <Typography>{card.description}</Typography>
                   </CardContent>
                   <CardActions>
                     <Button
                       size="small"
                       color="primary"
                       onClick={() => {
-                        console.log(card.course_id)
-                        
-                        return viewClicked(card.course_id)}}
-                    >
+                        return viewClicked(card.course_id)}}>
                       View
                     </Button>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary"
+                      onClick={() => {        
+                      return editClicked(card.course_id)}}>
                       Edit
                     </Button>
                   </CardActions>
