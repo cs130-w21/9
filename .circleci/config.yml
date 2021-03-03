@@ -15,12 +15,18 @@ jobs:
       steps:
       - checkout
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - save_cache:
+          paths:
+          - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm ci
+      - run: npm install
+
+      - persist_to_workspace:
+        root: ../opencourse-backend
+        paths:
+          - node_modules
+              
       - run: npm run build
     #test:
       #steps:
