@@ -8,7 +8,7 @@
     "frontend": "cd ./opencourse-app && npm run start",
     "backend": "cd ./opencourse-backend && node server.js",
     "test": "((npm run backend) & (cd ./opencourse-backend && npm run test) & (cd ./opencourse-app && npm test))",
-    "start": "npm run backend & npm run frontend"
+    "start": "npm run backend & npm run frontend",
     "test:ci": "((npm run backend) & (cd ./opencourse-backend && npm run test) & (cd ./opencourse-app && npm test))"
   }
 }
