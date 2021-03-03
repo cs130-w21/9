@@ -14,13 +14,15 @@ jobs:
               - image: circleci/node:10.14.2
       steps:
       - checkout
+      - rm ../package-lock.json
+      - node/install-npm
       - run: npm ci
 
       # Download and cache dependencies
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
-      
-      - node/install-npm
+      #- rm ../package-lock.json      
+      #- node/install-npm
 
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
