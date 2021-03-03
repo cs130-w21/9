@@ -21,10 +21,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run: npm ci
+      - run: npm run build
     #test:
       #steps:
-        #- run: npm ci
-        # - run: npm run build
         #- run: npm run test:ci
       
         #- save_cache:
