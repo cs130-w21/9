@@ -1,12 +1,17 @@
 version: 2.1
 
+defaults: &defaults
+  working_directory: ~/130-project/9
+  docker:
+    - image: circleci/node:10.14.2
+
 orbs:
   node: circleci/node@3.0.0
 
 jobs:
     build:
       docker:
-      - image: circleci/node@3.0.0
+              - image: circleci/node:10.14.2
       steps:
       - checkout
       # Download and cache dependencies
