@@ -28,9 +28,9 @@ jobs:
             - node_modules
 
       - persist_to_workspace:
-        root: ../opencourse-backend
-        paths:
-          - node_modules
+          root: ../opencourse-backend
+          paths:
+            - node_modules
               
       - run: npm run build
     #test:
