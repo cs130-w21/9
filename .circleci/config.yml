@@ -15,7 +15,7 @@ jobs:
       steps:
       - checkout
       - run: rm package-lock.json
-      - run: node/install-npm
+      - run: npm install
 
       # Download and cache dependencies
       - restore_cache:
