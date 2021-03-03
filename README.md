@@ -85,6 +85,15 @@ It is recommended to [create periodic releases](https://docs.github.com/en/free-
 
 ### Using a CI/CD pipeline
 
+
+
+To build: "npm run bild" in the main project directory.
+To test:  In the main directory, running "npm test" runs all the tests, including front-end tests for react as well as
+	  backend tests to test Node.js (and Express).
+To start running the application on your local machine, run the command "npm start", which starts both 
+the server and the frontend.
+
+
 Every repository needs to have a way to build its artifacts headlessly. It is a good idea to run tests as part of such build. Instructions on how to build the components in a repository needs to be documented in the repository's README.md.
 
 A repository can also be setup to build continuously whenever a commit is pushed to the `master` branch by setting up a CI script (e.g., [Travis CI](https://www.travis-ci.com/)) in its root folder. Such script will configure the build environment (as a virtual machine) and invoke the build script on the `master` branch. If the script fails for some reason, the committer will be notified to fix it. It is a good practice to add a build [badge](https://shields.io/category/version) to the README.md file to visibly indicate the status of the last CI build (Travis CI provides such badges). 
