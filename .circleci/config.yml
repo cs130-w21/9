@@ -28,7 +28,7 @@ jobs:
             - node_modules
 
       - persist_to_workspace:
-          root: ../opencourse-backend
+          root: ~/130-project/9/opencourse-backend
           paths:
             - node_modules
               
