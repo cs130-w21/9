@@ -14,13 +14,18 @@ jobs:
               - image: circleci/node:10.14.2
       steps:
       - checkout
-      # Download and cache dependencies
-      - save_cache:
-          paths:
-          - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm ci
-      - run: npm install
+
+      # Download and cache dependencies
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      
+      - node/install-npm
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
 
       - persist_to_workspace:
         root: ../opencourse-backend
@@ -30,7 +35,7 @@ jobs:
       - run: npm run build
     #test:
       #steps:
-        #- run: npm run test:ci
+        #- run: npm test
       
         #- save_cache:
         #  paths:
