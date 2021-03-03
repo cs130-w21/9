@@ -16,13 +16,16 @@ jobs:
       - checkout
       - run: rm ../package-lock.json
       - node/install-npm
-      - run: npm ci
 
       # Download and cache dependencies
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          keys:
+          - dependency-cache-{{ checksum "package-lock.json" }}
+          - dependency-cache-
       #- rm ../package-lock.json      
       #- node/install-npm
+      - run: npm ci
+      - run: npm run build
 
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -34,7 +37,6 @@ jobs:
               #paths:
               #- node_modules
               
-      - run: npm run build
     #test:
       #steps:
         #- run: npm test
