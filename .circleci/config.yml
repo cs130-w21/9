@@ -41,7 +41,7 @@ jobs:
     docker:
       - image: circleci/node:10.14.2
     steps:
-            - run: cd ~/130-project/9 npm test
+            - run: cd ~/130-project/9 && npm test
       
           #- save_cache:
           #paths:
