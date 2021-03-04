@@ -173,9 +173,9 @@ export default function CoursePage() {
                       <Button href = {card.link} target = "_blank"variant = "outlined" size="medium" style ={{marginLeft: "auto", backgroundColor: '#2196F3', borderRadius: '5px',  color: 'white'}}>
                         Learn
                       </Button>
-                      <Button variant = "outlined" size="medium" style ={{backgroundColor: '#f10849', borderRadius: '5px', color: 'white'}}>
+                      {/*<Button variant = "outlined" size="medium" style ={{backgroundColor: '#f10849', borderRadius: '5px', color: 'white'}}>
                         Completed
-                      </Button> 
+                      </Button> */}
                     </CardActions>
                   </Card>
                 </Grid>
