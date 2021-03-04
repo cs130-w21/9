@@ -52,7 +52,7 @@ jobs:
         - dependency-cache-
 
     - run: npm ci
-    - run: kill $(lsof -t -i:4000) && kill $(lsof -t -i:3000)
+      #- run: kill $(lsof -t -i:4000) && kill $(lsof -t -i:3000)
     - run: CI= npm test
 
     - save_cache:

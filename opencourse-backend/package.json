@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "(mocha || true)"
+    "test": "(mocha || true)",
+    "stop": "node server.stop.js"
   },
   "keywords": [],
   "author": "",
