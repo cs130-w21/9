@@ -22,8 +22,7 @@ jobs:
           keys:
           - dependency-cache-{{ checksum "package-lock.json" }}
           - dependency-cache-
-      #- rm ../package-lock.json      
-      #- node/install-npm
+      
       - run: npm ci
       - run: CI= npm run build
 
@@ -37,18 +36,18 @@ jobs:
               #paths:
               #- node_modules
               
-    #test:
-      #steps:
-        #- run: npm test
+    test:
+      steps:
+        - run: npm test
       
-        #- save_cache:
-        #  paths:
-        #    - node_modules
-        #  key: v1-dependencies-{{ checksum "package.json" }}
+          #- save_cache:
+          #paths:
+          # - node_modules
+          #key: v1-dependencies-{{ checksum "package.json" }}
 
 workflows:
      build_and_test:
         jobs:
           - build
           
-          #- test
+          - test
