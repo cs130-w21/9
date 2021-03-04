@@ -59,10 +59,6 @@ jobs:
         paths:
         - node_modules
  
-          #- save_cache:
-          #paths:
-          # - node_modules
-          #key: v1-dependencies-{{ checksum "package.json" }}
 
 workflows:
      build_and_test:
