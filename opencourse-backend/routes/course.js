@@ -46,6 +46,23 @@ router.route("/create").post((req, res) => {
 		name: req.body.name,
 		body: req.body.body
 	});
+
+	res.send("success");
+})
+
+router.route("/createq").get((req, res) => {
+	console.log("req.params", req.params);
+	coursesRef.doc(`${req.body.course_id}`).set({
+		course_id: req.params.course_id, 
+		author: req.params.author, 
+		date_created: req.params.date_created, 
+		description: req.params.description,
+		length: req.params.length,
+		name: req.params.name,
+		body: req.params.body
+	});
+
+	res.send("success");
 })
 
 module.exports = router;
