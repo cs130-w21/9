@@ -37,10 +37,11 @@ jobs:
               #- node_modules
               
   test:
+    working_directory: ~/130-project/9
     docker:
       - image: circleci/node:10.14.2
     steps:
-    - run: npm test
+            - run: cd ~/130-project/9 npm test
       
           #- save_cache:
           #paths:
@@ -51,7 +52,7 @@ workflows:
      build_and_test:
         jobs:
           - build
-          -  test:
-               requires:
-                 - build
+          -  test
+                  #requires:
+                  #- build
 
