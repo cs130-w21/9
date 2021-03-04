@@ -39,9 +39,26 @@ jobs:
   test:
     docker:
       - image: circleci/node:10.14.2
+
     steps:
-            - run: npm test
-      
+    - checkout
+    - run: rm package-lock.json
+    - run: npm install
+
+      # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - dependency-cache-{{ checksum "package-lock.json" }}
+        - dependency-cache-
+
+    - run: npm ci
+    - run: CI= npm test
+
+    - save_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+ 
           #- save_cache:
           #paths:
           # - node_modules
