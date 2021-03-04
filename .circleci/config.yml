@@ -1,7 +1,7 @@
 version: 2.1
 
 defaults: &defaults
-  working_directory: /130-project/9
+  working_directory: /
   docker:
     - image: circleci/node:10.14.2
 
@@ -37,7 +37,6 @@ jobs:
               #- node_modules
               
   test:
-    working_directory: /130-project/9
     docker:
       - image: circleci/node:10.14.2
     steps:
