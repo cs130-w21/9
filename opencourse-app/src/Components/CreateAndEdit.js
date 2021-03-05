@@ -25,17 +25,11 @@ const createEditModel = new createEditCourseModel();
 export default function CreateAndEdit() {
   const classes = useStyles();
   const location = useLocation();
-  const courseId = location.state.detail; //undefined if creating course
+  const courseId = location.state ? location.state.detail : undefined; //undefined if creating course
+  const [editing, setEditing] = useState(!(location.state === undefined));
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [modules, setModules] = useState([
-    {
-      id: 1,
-      title: "first modulee",
-      desc: "this is the first module",
-      link: "https://pictureofahotdog.com/",
-    },
-  ]);
+  const [modules, setModules] = useState([]);
 
   const getCourse = async () => {
     try {
@@ -65,6 +59,7 @@ export default function CreateAndEdit() {
   const [currModuleIndex, setCurrModuleIndex] = useState(0);
 
   useEffect(() => {
+    console.log("editing", editing);
     getCourse();
   }, []);
   /*

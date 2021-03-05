@@ -55,13 +55,13 @@ class CreateEditModel {
       const data = await axios.post(
         "http://localhost:4000/courses/create",
         {
-          id: parseInt(courseId), //mandatory
-          date_created: dataBody.date_created, //mandatory
+          id: parseInt(courseId), //mandatory in db
+          date_created: dataBody.date_created, //mandatory in db
           description: dataBody.description,
           length: dataBody.length,
           author: dataBody.author,
-          name: dataBody.name, //mandatory
-          body: courseBody, //mandatory
+          name: dataBody.name, //mandatory in db
+          body: courseBody, //mandatory in db
           course_id: courseId,
         },
         { headers: headers }

@@ -12,7 +12,7 @@ import Link from "@material-ui/core/Link";
 import logo from "../OpenCourse.svg";
 import history from "../history.js";
 import CourseListModel from "../Models/CourseListModel.js";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 import CreateEditModel from "../Models/createEditCourseModel.js";
 
 function Copyright() {
@@ -36,14 +36,19 @@ function viewClicked(albumNum) {
 }
 
 function editClicked(albumNum) {
-  console.log("Clocked")
+  console.log("edit Clicked");
   history.push({
     pathname: "/createEdit",
     state: { detail: albumNum },
   });
 }
 
-
+function createClicked() {
+  console.log("create Clicked");
+  history.push({
+    pathname: "/createEdit",
+  });
+}
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -80,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 const courseListModel = new CourseListModel();
 const courseCreateModel = new CreateEditModel();
-export default function CourseList({handleLogout}) {
+export default function CourseList({ handleLogout }) {
   const classes = useStyles();
   const [issues, setIssues] = useState([]);
   const getIssues = async () => {
@@ -92,15 +97,29 @@ export default function CourseList({handleLogout}) {
     }
   };
 
-  function createCourse(courseId, courseAuthor, courseDate, courseDescription,
-    courseLength, courseName, courseBody) {
-      courseCreateModel.createCourse(courseId, courseAuthor, courseDate, courseDescription,
-        courseLength, courseName, courseBody)
-    }
+  function createCourse(
+    courseId,
+    courseAuthor,
+    courseDate,
+    courseDescription,
+    courseLength,
+    courseName,
+    courseBody
+  ) {
+    courseCreateModel.createCourse(
+      courseId,
+      courseAuthor,
+      courseDate,
+      courseDescription,
+      courseLength,
+      courseName,
+      courseBody
+    );
+  }
 
-    function editCourse(courseId, courseBody) {
-        courseCreateModel.editCourse(courseId, courseBody)
-      }
+  function editCourse(courseId, courseBody) {
+    courseCreateModel.editCourse(courseId, courseBody);
+  }
   useEffect(() => {
     getIssues();
   }, []);
@@ -114,14 +133,11 @@ export default function CourseList({handleLogout}) {
           <Container maxWidth="sm">
             <img src={logo} alt="Logo" />
           </Container>
-          <Box textAlign='center'>
-            <Button variant='contained'
-            onClick={() => {
-              editCourse("100",[{title: "link2", link: "https://reddit.com", description : "test"}])}}>
+          <Box textAlign="center">
+            <Button variant="contained" onClick={createClicked}>
               Add Course
             </Button>
           </Box>
-
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
@@ -145,12 +161,18 @@ export default function CourseList({handleLogout}) {
                       size="small"
                       color="primary"
                       onClick={() => {
-                        return viewClicked(card.course_id)}}>
+                        return viewClicked(card.course_id);
+                      }}
+                    >
                       View
                     </Button>
-                    <Button size="small" color="primary"
-                      onClick={() => {        
-                      return editClicked(card.course_id)}}>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => {
+                        return editClicked(card.course_id);
+                      }}
+                    >
                       Edit
                     </Button>
                   </CardActions>
