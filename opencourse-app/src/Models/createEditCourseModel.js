@@ -1,77 +1,77 @@
-import axios from 'axios';
+import axios from "axios";
 
 var headers = {
-    'Content-Type': 'application/json'
-}
+  "Content-Type": "application/json",
+};
 class CreateEditModel {
-    constructor() {
-      this.cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    }
+  constructor() {
+    this.cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  }
 
-    createCourse = async (courseAuthor, courseDescription,
-        courseLength, courseName, courseBody) => {
-      try {
-          const randomId = Math.floor(Math.random() * 1000000000000000); 
-          var today = new Date();
-          var dd = String(today.getDate()).padStart(2, '0');
-          var mm = String(today.getMonth() + 1).padStart(2, '0');
-          var yyyy = today.getFullYear();
-          today = mm + '/' + dd + '/' + yyyy;
-          const data = await axios.post(
-              "http://localhost:4000/courses/create", {
-                "id": randomId,
-                "date_created": today,
-                "description": courseDescription,
-                "length": courseLength,
-                "author": courseAuthor,
-                "name": courseName,
-                "body": courseBody,
-                "course_id": toString(randomId)
-        },{"headers" : headers}
-          );
-          console.log(data.data)
-            return data.data
-      } catch(e) {
-          console.log(e);
-      }
+  createCourse = async (
+    courseAuthor,
+    courseDescription,
+    courseLength,
+    courseName,
+    courseBody
+  ) => {
+    try {
+      const randomId = Math.floor(Math.random() * 1000000000000000);
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0");
+      var yyyy = today.getFullYear();
+      today = mm + "/" + dd + "/" + yyyy;
+      const data = await axios.post(
+        "http://localhost:4000/courses/create",
+        {
+          id: randomId, //mandatory
+          date_created: today, //mandatory
+          description: courseDescription,
+          length: courseLength,
+          author: courseAuthor,
+          name: courseName, //mandatory
+          body: courseBody, //mandatory
+          course_id: toString(randomId),
+        },
+        { headers: headers }
+      );
+      console.log(data.data);
+      return data.data;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   editCourse = async (courseId, courseBody) => {
-    var modules = []
-    var dataBody = {}
+    var dataBody = {};
     try {
-        const data = await axios.get(
-            `http://localhost:4000/courses/${courseId}`
-        );
-            modules = data.data.body
-            dataBody = data.data
-    } catch(e) {
-        console.log(e);
-    }
-  try {
-      console.log(modules)
-      for(var i = 0; i < modules.length; i++){
-          courseBody.push(modules[i])
-      }
-      const data = await axios.post(
-          "http://localhost:4000/courses/create", {
-            "id": parseInt(courseId),
-            "date_created": dataBody.date_created,
-            "description": dataBody.description,
-            "length": dataBody.length,
-            "author": dataBody.author,
-            "name": dataBody.name,
-            "body": courseBody,
-            "course_id": courseId
-    },{"headers" : headers}
-      );
-      console.log(dataBody)
-        return dataBody
-  } catch(e) {
+      const data = await axios.get(`http://localhost:4000/courses/${courseId}`);
+      dataBody = data.data;
+    } catch (e) {
       console.log(e);
-  }
-};
-  }
+    }
+    try {
+      const data = await axios.post(
+        "http://localhost:4000/courses/create",
+        {
+          id: parseInt(courseId), //mandatory
+          date_created: dataBody.date_created, //mandatory
+          description: dataBody.description,
+          length: dataBody.length,
+          author: dataBody.author,
+          name: dataBody.name, //mandatory
+          body: courseBody, //mandatory
+          course_id: courseId,
+        },
+        { headers: headers }
+      );
+      console.log(dataBody);
+      return dataBody;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
 
-  export default CreateEditModel;
- 
+export default CreateEditModel;

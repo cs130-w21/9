@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,9 +16,16 @@ import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ModuleCard from "./ModuleCard";
 import Modal from "@material-ui/core/Modal";
+import CoursePageModel from "../Models/CoursePageModel.js";
+import createEditCourseModel from "../Models/createEditCourseModel.js";
+
+const coursePageModel = new CoursePageModel();
+const createEditModel = new createEditCourseModel();
 
 export default function CreateAndEdit() {
   const classes = useStyles();
+  const location = useLocation();
+  const courseId = location.state.detail; //undefined if creating course
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [modules, setModules] = useState([
@@ -29,6 +37,24 @@ export default function CreateAndEdit() {
     },
   ]);
 
+  const getCourse = async () => {
+    try {
+      const data = await coursePageModel.getData(courseId);
+      console.log(data);
+      if (data.body !== undefined) {
+        setModules(data.body);
+      }
+      if (data.description !== undefined) {
+        setDesc(data.description);
+      }
+      if (data.name !== undefined) {
+        setTitle(data.name);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const [open, setOpen] = useState(false);
   const [currModule, setCurrModule] = useState({
     id: undefined,
@@ -38,7 +64,10 @@ export default function CreateAndEdit() {
   });
   const [currModuleIndex, setCurrModuleIndex] = useState(0);
 
-/*
+  useEffect(() => {
+    getCourse();
+  }, []);
+  /*
 Function for adding/creating a course. Must fill in all parameters.
 Create the courseEdit model first like this
 const courseListModel = new CourseListModel();
@@ -78,7 +107,6 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
         courseLength, courseName, courseBody)
     }
 */
-
 
   const handleModuleTitleChange = (e) => {
     setCurrModule({ ...currModule, title: e.target.value });
