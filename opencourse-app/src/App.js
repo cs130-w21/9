@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { shadows } from "@material-ui/system";
+import Login from "./login";
 
 export default class Routes extends Component {
   render() {
@@ -42,7 +43,7 @@ export default class Routes extends Component {
         </AppBar>
         <Router history={history}>
           <Switch>
-            <Route path="/" exact component={CourseList} />
+            <Route path="/" exact component={Login} />
             <Route path="/CoursePage" component={CoursePage} />
             <Route path="/createEdit" component={CreateAndEdit} />
           </Switch>
