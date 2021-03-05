@@ -55,7 +55,7 @@ describe("Test the backend", function() {
   		});
 	});
 
- 
+/* Check the databse (Firebase Firestore) and delete course 5 if it is there. */ 
 
   it("Tests route when adding a new course", function() {
 
