@@ -211,17 +211,9 @@ export default function CoursePage() {
                       >
                         Learn
                       </Button>
-                      <Button
-                        variant="outlined"
-                        size="medium"
-                        style={{
-                          backgroundColor: "#f10849",
-                          borderRadius: "5px",
-                          color: "white",
-                        }}
-                      >
+                      {/*<Button variant = "outlined" size="medium" style ={{backgroundColor: '#f10849', borderRadius: '5px', color: 'white'}}>
                         Completed
-                      </Button>
+                      </Button> */}
                     </CardActions>
                   </Card>
                 </Grid>
