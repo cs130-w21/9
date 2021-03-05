@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import history from "../history.js";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -111,11 +112,15 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
       alert("You must add a course title!");
     } else if (modules.length == 0) {
       alert("You must add course modules");
-    }
-    try {
-      createEditModel.createCourse(author, desc, "", title, modules);
-    } catch (e) {
-      console.log(e);
+    } else {
+      try {
+        createEditModel.createCourse(author, desc, "", title, modules);
+        history.push({
+          pathname: "/",
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
     //route back to home
   };
@@ -123,11 +128,15 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
   const saveEdits = () => {
     if (modules.length == 0) {
       alert("You must add course modules");
-    }
-    try {
-      createEditModel.editCourse(courseId, modules);
-    } catch (e) {
-      console.log(e);
+    } else {
+      try {
+        createEditModel.editCourse(courseId, modules);
+        history.push({
+          pathname: "/",
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
     //route back to home
   };

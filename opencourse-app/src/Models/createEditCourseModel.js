@@ -22,6 +22,8 @@ class CreateEditModel {
       var mm = String(today.getMonth() + 1).padStart(2, "0");
       var yyyy = today.getFullYear();
       today = mm + "/" + dd + "/" + yyyy;
+      const course_id = randomId.toString();
+      console.log("createcourse id", course_id);
       const data = await axios.post(
         "http://localhost:4000/courses/create",
         {
@@ -32,11 +34,11 @@ class CreateEditModel {
           author: courseAuthor,
           name: courseName, //mandatory
           body: courseBody, //mandatory
-          course_id: toString(randomId),
+          course_id: course_id,
         },
         { headers: headers }
       );
-      console.log(data.data);
+      console.log("post request", data.data);
       return data.data;
     } catch (e) {
       console.log(e);
