@@ -37,18 +37,102 @@ router.route("/:id").get(function (req, res) {
 
 router.route("/create").post((req, res) => {
 	console.log("req.body", req.body);
-	coursesRef.doc(`${req.body.course_id}`).set({
-		course_id: req.body.course_id, 
-		author: req.body.author, 
-		date_created: req.body.date_created, 
-		description: req.body.description,
-		length: req.body.length,
-		name: req.body.name,
-		body: req.body.body
-	});
+	var authE = false;
+	var descE = false;
+	var lengE = false;
+	console.log("req.body.author:", req.body.author);
+	if(req.body.author == null){
+		authE = true;
+	}
+
+	if(req.body.description == null){
+		descE = true;
+	}
+
+	if(req.body.length == null){
+		lengE = true;
+	}
+
+	if(authE && descE && lengE){
+		console.log("1");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			date_created: req.body.date_created, 
+			name: req.body.name,
+			body: req.body.body
+		});
+	} else if (authE && descE && (!lengE)){
+		console.log("2");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			date_created: req.body.date_created, 
+			length: req.body.length,
+			name: req.body.name,
+			body: req.body.body
+		});
+	} else if (authE && (!descE) && lengE){
+		console.log("3");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			date_created: req.body.date_created, 
+			description: req.body.description,
+			name: req.body.name,
+			body: req.body.body
+		});
+	} else if (authE && (!descE) && (!lengE)){
+		console.log("4");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			date_created: req.body.date_created, 
+			description: req.body.description,
+			length: req.body.length,
+			name: req.body.name,
+			body: req.body.body
+		});
+	} else if ((!authE) && descE && lengE){
+		console.log("5");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			author: req.body.author, 
+			date_created: req.body.date_created, 
+			name: req.body.name,
+			body: req.body.body
+		});
+	} else if ((!authE) && descE && (!lengE)){
+		console.log("6");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			author: req.body.author, 
+			date_created: req.body.date_created, 
+			length: req.body.length,
+			name: req.body.name,
+			body: req.body.body
+		});
+	} else if ((!authE) && (!descE) && lengE){
+		console.log("7");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			author: req.body.author, 
+			date_created: req.body.date_created, 
+			description: req.body.description,
+			name: req.body.name,
+			body: req.body.body
+		});
+	} else if ((!authE) && (!descE) && (!lengE)){
+		console.log("8");
+		coursesRef.doc(`${req.body.course_id}`).set({
+			course_id: req.body.course_id, 
+			author: req.body.author, 
+			date_created: req.body.date_created, 
+			description: req.body.description,
+			length: req.body.length,
+			name: req.body.name,
+			body: req.body.body
+		});
+	}
 
 	res.send("success");
-})
+});
 
 router.route("/createq").get((req, res) => {
 	console.log("req.params", req.params);
