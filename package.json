@@ -15,7 +15,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "build": "cd ./opencourse-app && react-scripts build",
+    "build": "cd ./opencourse-app && npm run build",
     "frontend": "cd ./opencourse-app && npm run start",
     "backend": "cd ./opencourse-backend && node server.js",
     "test": "((npm run backend) & (cd ./opencourse-backend && npm run test) & (cd ./opencourse-app && npm test))",
