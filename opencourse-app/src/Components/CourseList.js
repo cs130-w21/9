@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 const courseListModel = new CourseListModel();
 const courseCreateModel = new CreateEditModel();
-export default function CourseList() {
+export default function CourseList({handleLogout}) {
   const classes = useStyles();
   const [issues, setIssues] = useState([]);
   const getIssues = async () => {
@@ -108,6 +108,7 @@ export default function CourseList() {
     <React.Fragment>
       <style>{"body { background-color: gray; }"}</style>
       <main>
+        <button onClick={handleLogout}>Logout</button>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
