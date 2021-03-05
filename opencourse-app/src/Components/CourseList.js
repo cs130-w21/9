@@ -12,6 +12,8 @@ import Link from "@material-ui/core/Link";
 import logo from "../OpenCourse.svg";
 import history from "../history.js";
 import CourseListModel from "../Models/CourseListModel.js";
+import Box from '@material-ui/core/Box';
+import CreateEditModel from "../Models/createEditCourseModel.js";
 
 function Copyright() {
   return (
@@ -40,6 +42,8 @@ function editClicked(albumNum) {
     state: { detail: albumNum },
   });
 }
+
+
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -75,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const courseListModel = new CourseListModel();
+const courseCreateModel = new CreateEditModel();
 export default function CourseList() {
   const classes = useStyles();
   const [issues, setIssues] = useState([]);
@@ -87,6 +92,15 @@ export default function CourseList() {
     }
   };
 
+  function createCourse(courseId, courseAuthor, courseDate, courseDescription,
+    courseLength, courseName, courseBody) {
+      courseCreateModel.createCourse(courseId, courseAuthor, courseDate, courseDescription,
+        courseLength, courseName, courseBody)
+    }
+
+    function editCourse(courseId, courseBody) {
+        courseCreateModel.editCourse(courseId, courseBody)
+      }
   useEffect(() => {
     getIssues();
   }, []);
@@ -99,6 +113,14 @@ export default function CourseList() {
           <Container maxWidth="sm">
             <img src={logo} alt="Logo" />
           </Container>
+          <Box textAlign='center'>
+            <Button variant='contained'
+            onClick={() => {
+              editCourse("100",[{title: "link2", link: "https://reddit.com", description : "test"}])}}>
+              Add Course
+            </Button>
+          </Box>
+
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}

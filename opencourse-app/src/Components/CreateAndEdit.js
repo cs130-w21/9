@@ -38,6 +38,48 @@ export default function CreateAndEdit() {
   });
   const [currModuleIndex, setCurrModuleIndex] = useState(0);
 
+/*
+Function for adding/creating a course. Must fill in all parameters.
+Create the courseEdit model first like this
+const courseListModel = new CourseListModel();
+
+You then call the function as courseListMode.createCourse(fill in all parameters)
+courseAuthor = string
+courseDescription = string
+courseLength = string
+courseName = string
+courseBody = array of objects with following type {title: "link2", link: "https://reddit.com", description : "test"}, be sure that this
+is an array, as the model will append the existing entries into this array and then this array will be sent in post request. 
+
+Example call createCourse("1 minute", "Abstract", [{title: "link2", link: "https://reddit.com", description : "test"}])
+
+  function createCourse(courseId, courseAuthor, courseDate, courseDescription,
+    courseLength, courseName, courseBody) {
+      courseCreateModel.createCourse(courseId, courseAuthor, courseDate, courseDescription,
+        courseLength, courseName, courseBody)
+    }
+
+
+  ****** To Edit a course *****
+CourseId is needed as well as a body to edit a course. You can also change the name and description
+
+courseID = int ** required
+courseDescription = string ** optional
+courseLength = string ** optional
+courseName = string ** required
+courseBody = array of objects with following type {title: "link2", link: "https://reddit.com", description : "test"}, be sure that this
+is an array, as the model will append the existing entries into this array and then this array will be sent in post request. ** required
+
+Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2", link: "https://reddit.com", description : "test"}])
+
+  function createCourse(courseId, courseAuthor, courseDate, courseDescription,
+    courseLength, courseName, courseBody) {
+      courseCreateModel.createCourse(courseId, courseAuthor, courseDate, courseDescription,
+        courseLength, courseName, courseBody)
+    }
+*/
+
+
   const handleModuleTitleChange = (e) => {
     setCurrModule({ ...currModule, title: e.target.value });
   };
