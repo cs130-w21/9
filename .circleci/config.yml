@@ -16,6 +16,7 @@ jobs:
     - checkout
     - run: rm package-lock.json
     - run: npm install
+    - run: npm install --save firebase
 
       # Download and cache dependencies
     - restore_cache:
@@ -44,6 +45,7 @@ jobs:
     - checkout
     - run: rm package-lock.json
     - run: npm install
+    - run: npm install --save firebase
 
       # Download and cache dependencies
     - restore_cache:
