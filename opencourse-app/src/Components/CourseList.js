@@ -12,6 +12,8 @@ import Link from "@material-ui/core/Link";
 import logo from "../OpenCourse.svg";
 import history from "../history.js";
 import CourseListModel from "../Models/CourseListModel.js";
+import Box from "@material-ui/core/Box";
+import CreateEditModel from "../Models/createEditCourseModel.js";
 
 function Copyright() {
   return (
@@ -34,10 +36,17 @@ function viewClicked(albumNum) {
 }
 
 function editClicked(albumNum) {
-  console.log("Clocked")
+  console.log("edit Clicked");
   history.push({
     pathname: "/createEdit",
     state: { detail: albumNum },
+  });
+}
+
+function createClicked() {
+  console.log("create Clicked");
+  history.push({
+    pathname: "/createEdit",
   });
 }
 
@@ -75,7 +84,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const courseListModel = new CourseListModel();
-export default function CourseList() {
+const courseCreateModel = new CreateEditModel();
+export default function CourseList({ handleLogout }) {
   const classes = useStyles();
   const [issues, setIssues] = useState([]);
   const getIssues = async () => {
@@ -87,6 +97,29 @@ export default function CourseList() {
     }
   };
 
+  function createCourse(
+    courseId,
+    courseAuthor,
+    courseDate,
+    courseDescription,
+    courseLength,
+    courseName,
+    courseBody
+  ) {
+    courseCreateModel.createCourse(
+      courseId,
+      courseAuthor,
+      courseDate,
+      courseDescription,
+      courseLength,
+      courseName,
+      courseBody
+    );
+  }
+
+  function editCourse(courseId, courseBody) {
+    courseCreateModel.editCourse(courseId, courseBody);
+  }
   useEffect(() => {
     getIssues();
   }, []);
@@ -94,11 +127,17 @@ export default function CourseList() {
     <React.Fragment>
       <style>{"body { background-color: gray; }"}</style>
       <main>
+        <button onClick={handleLogout}>Logout</button>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <img src={logo} alt="Logo" />
           </Container>
+          <Box textAlign="center">
+            <Button variant="contained" onClick={createClicked}>
+              Add Course
+            </Button>
+          </Box>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
@@ -122,12 +161,27 @@ export default function CourseList() {
                       size="small"
                       color="primary"
                       onClick={() => {
+<<<<<<< HEAD
                         return viewClicked(card.course_id)}}>
                       View
                     </Button>
                     <Button size="small" color="primary"
                       onClick={() => {        
                       return editClicked(card.course_id)}}>
+=======
+                        return viewClicked(card.course_id);
+                      }}
+                    >
+                      View
+                    </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => {
+                        return editClicked(card.course_id);
+                      }}
+                    >
+>>>>>>> 8b269118f58fe2441deaabbc746f81e754583664
                       Edit
                     </Button>
                   </CardActions>

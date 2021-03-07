@@ -34,7 +34,7 @@ export default function ModuleCard(props) {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.module.desc}
+          {props.module.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
