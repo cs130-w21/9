@@ -161,14 +161,6 @@ export default function CourseList({ handleLogout }) {
                       size="small"
                       color="primary"
                       onClick={() => {
-<<<<<<< HEAD
-                        return viewClicked(card.course_id)}}>
-                      View
-                    </Button>
-                    <Button size="small" color="primary"
-                      onClick={() => {        
-                      return editClicked(card.course_id)}}>
-=======
                         return viewClicked(card.course_id);
                       }}
                     >
@@ -181,7 +173,6 @@ export default function CourseList({ handleLogout }) {
                         return editClicked(card.course_id);
                       }}
                     >
->>>>>>> 8b269118f58fe2441deaabbc746f81e754583664
                       Edit
                     </Button>
                   </CardActions>
