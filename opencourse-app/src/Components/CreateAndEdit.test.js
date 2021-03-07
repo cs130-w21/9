@@ -6,41 +6,9 @@ import userEvent from '@testing-library/user-event';
 import Button from "@material-ui/core/Button";
 import CreateAndEdit from './CreateAndEdit';
 
-/*
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useState: jest.fn(),
-}));
-*/
-
 describe("Tests CreateAndEdit", function() {
-   it('renders successfully', () => {
-    const div = document.createElement('div');
-    //ReactDOM.render(<CreateAndEdit />, div);
-    expect(1).toEqual(1);
-  });
 
-/*
-  it('renders correctly', () => {
-    render(<CreateAndEdit />);
-    //expect(screen.getByLabelText('OpenCourse')).toBeInTheDocument();
-    
-    const elem = screen.getAllByText(/Course Title/i);
-    expect(elem[0]).toBeInTheDocument();
-    const el = screen.getAllByText(/Course Description/i);
-    expect(el[0]).toBeInTheDocument();
-    const e = screen.getAllByText(/Course Modules:/i);
-    expect(e[0]).toBeInTheDocument();
-  	
-    const buttons = screen.getAllByRole('button')
-    expect(buttons.length).toBe(4)
-    expect(buttons[0]).toHaveTextContent('Save Changes')
-    expect(buttons[3]).toHaveTextContent('Add Module')
-});
-
-	
-
-it('Adding Module works; calls the correct function', () => {
+it('Add Module works; calls the correct function', () => {
     const onClick = jest.fn()
     const { getByText } = render(<Button onClick={onClick}> /Add Module/i </Button>)
     fireEvent.click(getByText(/Add Module/i))  
@@ -48,25 +16,24 @@ it('Adding Module works; calls the correct function', () => {
     expect(onClick).toHaveBeenCalledTimes(1)
   });
 
-
-  const setState = jest.fn();
-  const useStateMock: any = (initState: any) => [initState, setState];
-
-  afterEach(() => {
-    jest.clearAllMocks();
+it('Create Course works; calls the correct function', () => {
+    const onClick = jest.fn()
+    const { getByText } = render(<Button onClick={onClick}> /Create Course/i </Button>)
+    fireEvent.click(getByText(/Create Course/i))  
+    expect(onClick).toHaveBeenCalled()
+    expect(onClick).toHaveBeenCalledTimes(1)
   });
 
-  it('Tests useState hook Adding a new', () => {
-    screen.debug();
+it('Save Changes works; calls the correct function', () => {
+    const onClick = jest.fn()
+    const { getByText } = render(<Button onClick={onClick}> /Save Changes/i </Button>)
+    fireEvent.click(getByText(/Save Changes/i))  
+    expect(onClick).toHaveBeenCalled()
+    expect(onClick).toHaveBeenCalledTimes(1)
+  });
 
-    jest.spyOn(React, 'useState').mockImplementation(useStateMock);
-    render(<CreateAndEdit />);          
-    const button1 = screen.getByTestId('addmodulebutton')
-    fireEvent.click(button1)
-    expect(setState).toHaveBeenCalledTimes(10);
-    });
 
-*/
+
 
 });
 
