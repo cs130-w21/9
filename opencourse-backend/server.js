@@ -2,13 +2,13 @@ const firebase = require("firebase/app");
 const auth = require("firebase/auth");
 require("firebase/firestore");
 
-var firebaseConfig = {
-	apiKey: "AIzaSyBdr9MQT-_lfD5s1vneXAIO1oG3M8LWDHk",
-	authDomain: "cs130-project.firebaseapp.com",
-	projectId: "cs130-project",
-	storageBucket: "cs130-project.appspot.com",
-	messagingSenderId: "670284860247",
-	appId: "1:670284860247:web:8f1edb1e12fdee15820c12"
+const firebaseConfig = {
+  apiKey: "AIzaSyBdr9MQT-_lfD5s1vneXAIO1oG3M8LWDHk",
+  authDomain: "cs130-project.firebaseapp.com",
+  projectId: "cs130-project",
+  storageBucket: "cs130-project.appspot.com",
+  messagingSenderId: "670284860247",
+  appId: "1:670284860247:web:8f1edb1e12fdee15820c12"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -28,6 +28,15 @@ const userRoute = require('./routes/user');
 
 app.use("/courses", courseRoute);
 app.use("/user", userRoute);
+
+const ENV = process.env.NODE_ENV;
+
+if (ENV == 'production') {
+  app.use(express.static(path.join(__dirname, '../opencourse-app/build')));
+  app.use((req, res) => {
+	res.sendFile(path.join(__dirname, '../opencourse-app/build/index/html'))});
+  
+}
 
 const coursesRef = db.collection("course");
 
@@ -55,3 +64,5 @@ app.route("/").get((req, res) => {
 	console.log("test1");
 
 });
+
+

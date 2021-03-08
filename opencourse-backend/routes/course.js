@@ -28,6 +28,7 @@ router.route("/:id").get(function (req, res) {
 			id: doc.id,
 			...doc.data(),
 		}));
+
 		//res.send(data);
 		for(var i = 0; i < data.length; i++){
 			if(data[i].course_id == req.params.id){
@@ -36,6 +37,7 @@ router.route("/:id").get(function (req, res) {
 				console.log(`data[${i}]`, data[i]);
 			}
 		}
+		
 		//console.log("All data in 'courses' collection", data);
 	});
 });

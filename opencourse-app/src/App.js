@@ -46,6 +46,7 @@ export default class Routes extends Component {
             <Route path="/" exact component={Login} />
             <Route path="/CoursePage" component={CoursePage} />
             <Route path="/createEdit" component={CreateAndEdit} />
+            
           </Switch>
         </Router>
       </>
