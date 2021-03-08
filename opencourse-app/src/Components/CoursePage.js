@@ -108,16 +108,12 @@ export default function CoursePage() {
   const location = useLocation();
   const courseId = location.state.detail;
   const classes = useStyles();
-  const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [modules, setModules] = useState([]);
   const getmodules = async () => {
     try {
       const data = await coursePageModel.getData(courseId);
-      if (data.author !== undefined) {
-        setAuthor(data.author);
-      }
       if (data.body !== undefined) {
         setModules(data.body);
       }
@@ -135,7 +131,7 @@ export default function CoursePage() {
 
   useEffect(() => {
     getmodules();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <React.Fragment>
@@ -180,7 +176,7 @@ export default function CoursePage() {
                 color: "#3e4551",
               }}
             >
-              Course Description {description}
+              Course Description: {description}
             </h5>
           </div>
         </div>

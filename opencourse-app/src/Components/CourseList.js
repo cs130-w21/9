@@ -13,7 +13,6 @@ import logo from "../OpenCourse.svg";
 import history from "../history.js";
 import CourseListModel from "../Models/CourseListModel.js";
 import Box from "@material-ui/core/Box";
-import CreateEditModel from "../Models/createEditCourseModel.js";
 
 function Copyright() {
   return (
@@ -99,7 +98,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const courseListModel = new CourseListModel();
-const courseCreateModel = new CreateEditModel();
 
 /**
  * Main component that renders an HTML web-page for the course list homepage.
@@ -118,29 +116,6 @@ export default function CourseList({ handleLogout }) {
     }
   };
 
-  function createCourse(
-    courseId,
-    courseAuthor,
-    courseDate,
-    courseDescription,
-    courseLength,
-    courseName,
-    courseBody
-  ) {
-    courseCreateModel.createCourse(
-      courseId,
-      courseAuthor,
-      courseDate,
-      courseDescription,
-      courseLength,
-      courseName,
-      courseBody
-    );
-  }
-
-  function editCourse(courseId, courseBody) {
-    courseCreateModel.editCourse(courseId, courseBody);
-  }
   useEffect(() => {
     getIssues();
   }, []);

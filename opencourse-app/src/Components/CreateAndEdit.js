@@ -4,17 +4,8 @@ import history from "../history.js";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import ShareIcon from "@material-ui/icons/Share";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
-import DeleteIcon from "@material-ui/icons/Delete";
 import ModuleCard from "./ModuleCard";
 import Modal from "@material-ui/core/Modal";
 import CoursePageModel from "../Models/CoursePageModel.js";
@@ -34,7 +25,7 @@ export default function CreateAndEdit() {
   const classes = useStyles();
   const location = useLocation();
   const courseId = location.state ? location.state.detail : undefined; //undefined if creating course
-  const [editing, setEditing] = useState(!(location.state === undefined));
+  const editing = useState(!(location.state === undefined));
   const [title, setTitle] = useState();
   const [desc, setDesc] = useState("");
   const [author, setAuthor] = useState();
@@ -77,47 +68,8 @@ export default function CreateAndEdit() {
     if (editing) {
       getCourse();
     }
-  }, []);
-  /*
-Function for adding/creating a course. Must fill in all parameters.
-Create the courseEdit model first like this
-const courseListModel = new CourseListModel();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-You then call the function as courseListMode.createCourse(fill in all parameters)
-courseAuthor = string
-courseDescription = string
-courseLength = string
-courseName = string
-courseBody = array of objects with following type {title: "link2", link: "https://reddit.com", description : "test"}, be sure that this
-is an array, as the model will append the existing entries into this array and then this array will be sent in post request. 
-
-Example call createCourse("1 minute", "Abstract", [{title: "link2", link: "https://reddit.com", description : "test"}])
-
-  function createCourse(courseId, courseAuthor, courseDate, courseDescription,
-    courseLength, courseName, courseBody) {
-      courseCreateModel.createCourse(courseId, courseAuthor, courseDate, courseDescription,
-        courseLength, courseName, courseBody)
-    }
-
-
-  ****** To Edit a course *****
-CourseId is needed as well as a body to edit a course. You can also change the name and description
-
-courseID = int ** required
-courseDescription = string ** optional
-courseLength = string ** optional
-courseName = string ** required
-courseBody = array of objects with following type {title: "link2", link: "https://reddit.com", description : "test"}, be sure that this
-is an array, as the model will append the existing entries into this array and then this array will be sent in post request. ** required
-
-Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2", link: "https://reddit.com", description : "test"}])
-
-  function createCourse(courseId, courseAuthor, courseDate, courseDescription,
-    courseLength, courseName, courseBody) {
-      courseCreateModel.createCourse(courseId, courseAuthor, courseDate, courseDescription,
-        courseLength, courseName, courseBody)
-    }
-*/
 
 /**
  * Calls model for when user creates a specific course
@@ -127,7 +79,7 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
   const createCourse = () => {
     if (!title) {
       alert("You must add a course title!");
-    } else if (modules.length == 0) {
+    } else if (modules.length === 0) {
       alert("You must add course modules");
     } else {
       try {
@@ -148,7 +100,7 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
  * @returns Edited course to course list.
  */
   const saveEdits = () => {
-    if (modules.length == 0) {
+    if (modules.length === 0) {
       alert("You must add course modules");
     } else {
       try {
