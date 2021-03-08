@@ -25,7 +25,7 @@ export default function CreateAndEdit() {
   const classes = useStyles();
   const location = useLocation();
   const courseId = location.state ? location.state.detail : undefined; //undefined if creating course
-  const editing = useState(!(location.state === undefined));
+  const [editing, setEditing] = useState(!(location.state === undefined));
   const [title, setTitle] = useState();
   const [desc, setDesc] = useState("");
   const [author, setAuthor] = useState();
@@ -51,6 +51,7 @@ export default function CreateAndEdit() {
       }
     } catch (e) {
       console.log(e);
+      setEditing(!(location.state === undefined))
     }
   };
 
