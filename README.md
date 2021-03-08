@@ -1,23 +1,31 @@
-# Repository Template
+Welcome to OpenCourse!
+Read the below information to find out how to locally build, test and run the app.
 
-[![Build Status](https://travis-ci.org/cs130-w21/template.svg?branch=master)](https://travis-ci.org/cs130-w21/template)
-[![Release](https://img.shields.io/github/v/release/cs130-w21/template?label=release)](https://github.com/cs130-w21/template/releases/latest)
+Requirements:
 
-This repo serves as a template for repositories in this organization. The following information describes how the native features/workflows of Github can be customized to work in a scrum development process.
+- First, make sure you have Node.js installed. If not, install it before you start any of the steps.
+- After cloning the github OpenCourse repository on your local machine, go to opencourse-app folder, and run the command npm install to install the required dependencies that your system may not have.
 
-## Issues
+Build:
 
-An issue is a unit of tracking work. Issues can be classified into different classes using `labels`. This can be used to classify issues in the scrum process as follows.
+In the main project directory of your local machine's copy, run: 
+**npm run build** 
+to build the project.
 
-### Epic
+Test:
 
-An [epic](https://dev.to/jorenrui/a-look-into-how-i-manage-my-personal-projects-my-git-github-workflow-1e7h#epic-issue) is an issue with the label `epic`. It represents a large story that can be broken into stories, which can be addressed over multiple sprints. An epic issue references its story issues as a task list in its description. A Github action has been added to automatically check/uncheck the story task items when they get closed/reopened.
+In the main project directory of your local machine's copy, run:
+**npm test**
+to run all the test cases, both frontend and backend.
 
-### Story
+Run:
 
-A [story](https://www.atlassian.com/agile/project-management/epics-stories-themes) is an issue with the label `story`. It may represents a new feature, or an enhancement to an existing feature. A story issue can be broken into sub tasks, which are added as a task list in the description of the story issue. These sub task items can be checked manually by the developer to indicate completion.
+Simply run the command:
+**npm start**
+This command will start the server, as well as the frontend, and the web application will show up and 
+start running on a window.
 
-### Bug
+Note:
 
 A bug is an issue with the label `bug`. It represents a problem with the existing code that needs to be fixed.
 
@@ -101,3 +109,6 @@ A repository can also be setup to build continuously whenever a commit is pushed
 The CI script will also be run when a new pull request is created or when more commits are pushed to its linked `issue` branch. Such build assures peer reviewers that the new commits when accepted will not break the build. In fact, a successful CI build can be a prerequisute for peer reviewers to look at the changes.
 
 When a tag is pushed to the `master` branch, the CI script will additionally deliver and/or deploy the built artifact(s). The script can also be configured to create a Github release based on the tag.
+=======
+Make sure that PORT 4000 is not in use before and in between the commands above. If an error shows up saying that port is in use, run the following
+command, and then re-run: **kill $(lsof -t -i:4000)**
