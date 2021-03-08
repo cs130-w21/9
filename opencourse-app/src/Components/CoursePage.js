@@ -230,7 +230,8 @@ export default function CoursePage() {
         </Container>
       </main>
 
-      {/* Footer */}
+      {/* Footer efeffe*/}
+      {/*new comment */}
       <footer className={classes.footer}>
         <Typography
           variant="subtitle1"
