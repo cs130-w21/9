@@ -29,7 +29,6 @@ const LoginComponent = (props) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {/* <input type="text" autoFocus required value={email} onChange={e => setEmail(e.target.value)}/> */}
         <p className="errorMsg">{emailError}</p>
         <label>Password: </label>
         <br />
