@@ -119,6 +119,7 @@ export default function CoursePage() {
       if (data.description !== undefined) {
         setDescription(data.description);
       }
+
       if (data.name !== undefined) {
         setTitle(data.name);
       }
@@ -217,6 +218,7 @@ export default function CoursePage() {
                     </CardActions>
                   </Card>
                 </Grid>
+
               ))
             ) : (
               <Typography>No modules for this course</Typography>
@@ -239,5 +241,6 @@ export default function CoursePage() {
       </footer>
       {/* End footer */}
     </React.Fragment>
+
   );
 }
