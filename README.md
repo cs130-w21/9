@@ -1,24 +1,26 @@
-Welcome to OpenCourse!
+[![cs130-w21](https://circleci.com/gh/cs130-w21/9.svg?style=svg)](https://app.circleci.com/pipelines/github/cs130-w21/9)
+
+# Welcome to OpenCourse!
 Read the below information to find out how to locally build, test and run the app.
 
-Requirements:
+### Requirements:
 
 - First, make sure you have Node.js installed. If not, install it before you start any of the steps.
 - After cloning the github OpenCourse repository on your local machine, go to opencourse-app folder, and run the command npm install to install the required dependencies that your system may not have.
 
-Build:
+## Build:
 
 In the main project directory of your local machine's copy, run: 
 **npm run build** 
 to build the project.
 
-Test:
+## Test:
 
 In the main project directory of your local machine's copy, run:
 **npm test**
 to run all the test cases, both frontend and backend.
 
-Run:
+## Run:
 
 Simply run the command:
 **npm start**
