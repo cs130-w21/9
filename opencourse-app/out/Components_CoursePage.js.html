@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/CoursePage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/CoursePage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Link from "@material-ui/core/Link";
+import logo from "../OpenCourse.svg";
+import CoursePageModel from "../Models/CoursePageModel.js";
+import CardHeader from "@material-ui/core/CardHeader";
+
+function Copyright() {
+  return (
+    &lt;Typography variant="body2" color="primary" align="center">
+      {"Copyright © "}
+      &lt;Link color="primary" href="https://material-ui.com/">
+        OpenCourse
+      &lt;/Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    &lt;/Typography>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: "#6D177D",
+    padding: theme.spacing(1, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(6),
+  },
+  cardGrid: {
+    align: "center",
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(10),
+  },
+  card: {
+    height: "120%",
+    width: "130%",
+    display: "flex",
+    flexDirection: "column",
+    color: "3e4551",
+    backgroundColor: "#CCC8CD",
+    borderRadius: "10px",
+    borderBottom: "1",
+    borderTopColor: "#2196F3",
+    borderColor: "#2196F3",
+    variant: "outlined",
+    raised: false,
+    shadow: 1,
+    transform: "translate(-5%, -5%)",
+    backgroundSize: "500%",
+    boxShadow: "0 3px 5px 2px rgba(20, 10, 15, .3)",
+    transition: "0.6s",
+    backgroundImage: "linear-gradient(45deg, #CCC8CD, #CCC8CD, #3e4551)",
+    "&amp;:hover": {
+      backgroundPosition: "right",
+      raised: true,
+      shadow: 3,
+      transform: "scale3d(1.05, 1.05, 1)",
+    },
+  },
+  newcard: {
+    height: "100%",
+    width: "20%",
+    display: "flex",
+    flexDirection: "row",
+    color: "#6D177D",
+  },
+
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: "white", //theme.palette.background.paper,
+    padding: theme.spacing(2),
+  },
+  menuButton: {
+    marginRight: theme.spacing(1),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: "auto",
+  },
+}));
+
+const coursePageModel = new CoursePageModel();
+
+/**
+ * Main component that renders an HTML web-page for the individual course page.
+ * @function  CoursePage
+ * @returns Rendered HTML individual course page with course sections to choose from.
+ */
+export default function CoursePage() {
+  const location = useLocation();
+  const courseId = location.state.detail;
+  const classes = useStyles();
+  const [author, setAuthor] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [modules, setModules] = useState([]);
+  const getmodules = async () => {
+    try {
+      const data = await coursePageModel.getData(courseId);
+      if (data.author !== undefined) {
+        setAuthor(data.author);
+      }
+      if (data.body !== undefined) {
+        setModules(data.body);
+      }
+      if (data.description !== undefined) {
+        setDescription(data.description);
+      }
+      if (data.name !== undefined) {
+        setTitle(data.name);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getmodules();
+  }, []);
+
+  return (
+    &lt;React.Fragment>
+      &lt;style>{"body { background-color:  #F0EEF1; }"}&lt;/style>
+      &lt;main>
+        &lt;div className={classes.root} variant="outlined">&lt;/div>
+
+        &lt;img
+          src={logo}
+          alt="Logo"
+          width="140"
+          height="130"
+          style={{ float: "left" }}
+        />
+        &lt;h1
+          style={{
+            textAlign: "center",
+            fontFamily: "Times New Roman",
+            fontSize: 50,
+            fontStyle: "normal",
+            minHeight: "1px",
+            color: "#3e4551",
+          }}
+        >
+          {" "}
+          {title}
+        &lt;/h1>
+
+        {/* Hero unit */}
+        &lt;div className={classes.cardContent}>
+          &lt;Container maxWidth="xl">
+            &lt;div>&lt;/div>
+          &lt;/Container>
+          &lt;div>
+            &lt;h5
+              style={{
+                textAlign: "center",
+                fontFamily: "Times New Roman",
+                fontSize: 20,
+                fontStyle: "normal",
+                minHeight: "1px",
+                color: "#3e4551",
+              }}
+            >
+              Course Description {description}
+            &lt;/h5>
+          &lt;/div>
+        &lt;/div>
+        &lt;Container className={classes.cardGrid} maxWidth="md">
+          {/* End hero unit */}
+
+          &lt;Grid container spacing={9}>
+            {modules.length > 0 ? (
+              modules.map((card) => (
+                &lt;Grid item key={card} xs={1} sm={4} md={9}>
+                  &lt;Card className={classes.card}>
+                    &lt;CardHeader
+                      title={card.title}
+                      // subheader="September 14, 2016"
+                    />
+                    &lt;CardContent className={classes.cardContent}>
+                      &lt;Typography gutterBottom variant="h3" component="h3">
+                        {card.id}
+                      &lt;/Typography>
+                      &lt;Typography>{card.description}&lt;/Typography>
+                    &lt;/CardContent>
+                    &lt;CardActions>
+                      &lt;Button
+                        href={card.link}
+                        target="_blank"
+                        variant="outlined"
+                        size="medium"
+                        style={{
+                          marginLeft: "auto",
+                          backgroundColor: "#2196F3",
+                          borderRadius: "5px",
+                          color: "white",
+                        }}
+                      >
+                        Learn
+                      &lt;/Button>
+                      {/*&lt;Button variant = "outlined" size="medium" style ={{backgroundColor: '#f10849', borderRadius: '5px', color: 'white'}}>
+                        Completed
+                      &lt;/Button> */}
+                    &lt;/CardActions>
+                  &lt;/Card>
+                &lt;/Grid>
+              ))
+            ) : (
+              &lt;Typography>No modules for this course&lt;/Typography>
+            )}
+          &lt;/Grid>
+        &lt;/Container>
+      &lt;/main>
+
+      {/* Footer */}
+      &lt;footer className={classes.footer}>
+        &lt;Typography
+          variant="subtitle1"
+          align="center"
+          color="textSecondary"
+          component="p"
+        >
+          CS130 Group 9
+        &lt;/Typography>
+        &lt;Copyright />
+      &lt;/footer>
+      {/* End footer */}
+    &lt;/React.Fragment>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li><li><a href="CourseListModel.html">CourseListModel</a></li><li><a href="CoursePageModel.html">CoursePageModel</a></li><li><a href="CreateEditModel.html">CreateEditModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authListener">authListener</a></li><li><a href="global.html#CourseList">CourseList</a></li><li><a href="global.html#CoursePage">CoursePage</a></li><li><a href="global.html#CreateAndEdit">CreateAndEdit</a></li><li><a href="global.html#createClicked">createClicked</a></li><li><a href="global.html#createCourse">createCourse</a></li><li><a href="global.html#editClicked">editClicked</a></li><li><a href="global.html#editCourse">editCourse</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleLogin">handleLogin</a></li><li><a href="global.html#handleLogout">handleLogout</a></li><li><a href="global.html#handleSignup">handleSignup</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginComponent">LoginComponent</a></li><li><a href="global.html#ModuleCard">ModuleCard</a></li><li><a href="global.html#saveEdits">saveEdits</a></li><li><a href="global.html#viewClicked">viewClicked</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 19:14:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

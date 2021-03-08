@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Models/createEditCourseModel.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Models/createEditCourseModel.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from "axios";
+
+var headers = {
+  "Content-Type": "application/json",
+};
+/**
+ * Creating and editing courses passed from the conroller to database.
+ * @class CreateEditModel
+ */
+
+class CreateEditModel {
+  /**
+   * Constructs creating and editing course card.
+   * @constructor 
+   */
+  constructor() {
+    this.cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  }
+
+  /**
+   * Given course information, will create a course in the database.
+   * @method createCourse 
+   * @param {string} courseAuthor - Author of Course.
+   * @param {string} courseDescription - Description of course to be created.
+   * @param {string} courseLength - Length of Course to be created.
+   * @param {string} courseName - Name of course to be created.
+   * @param {Object[]} courseBody - Array of modules.
+   * @returns A newly generated or edited course.
+   */
+  createCourse = async (
+    courseAuthor,
+    courseDescription,
+    courseLength,
+    courseName,
+    courseBody
+  ) => {
+    try {
+      const randomId = Math.floor(Math.random() * 1000000000000000);
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0");
+      var yyyy = today.getFullYear();
+      today = mm + "/" + dd + "/" + yyyy;
+      const course_id = randomId.toString();
+      console.log("createcourse id", course_id);
+      const data = await axios.post(
+        "http://localhost:4000/courses/create",
+        {
+          id: randomId, //mandatory
+          date_created: today, //mandatory
+          description: courseDescription,
+          length: courseLength,
+          author: courseAuthor,
+          name: courseName, //mandatory
+          body: courseBody, //mandatory
+          course_id: course_id,
+        },
+        { headers: headers }
+      );
+      console.log("post request", data.data);
+      return data.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  /**
+   * Given course ID and body, adds modules to given course in database.
+   * @method editCourse
+   * @param {int} courseId - Course distinguisher.
+   * @param {Object[]} courseBody - Array of Modules.
+   * @returns A new course module.
+   */
+  editCourse = async (courseId, courseBody) => {
+    var dataBody = {};
+    try {
+      const data = await axios.get(`http://localhost:4000/courses/${courseId}`);
+      dataBody = data.data;
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      const data = await axios.post(
+        "http://localhost:4000/courses/create",
+        {
+          id: parseInt(courseId), //mandatory in db
+          date_created: dataBody.date_created, //mandatory in db
+          description: dataBody.description,
+          length: dataBody.length,
+          author: dataBody.author,
+          name: dataBody.name, //mandatory in db
+          body: courseBody, //mandatory in db
+          course_id: courseId,
+        },
+        { headers: headers }
+      );
+      console.log(dataBody);
+      return dataBody;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
+export default CreateEditModel;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li><li><a href="CourseListModel.html">CourseListModel</a></li><li><a href="CoursePageModel.html">CoursePageModel</a></li><li><a href="CreateEditModel.html">CreateEditModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authListener">authListener</a></li><li><a href="global.html#CourseList">CourseList</a></li><li><a href="global.html#CoursePage">CoursePage</a></li><li><a href="global.html#CreateAndEdit">CreateAndEdit</a></li><li><a href="global.html#createClicked">createClicked</a></li><li><a href="global.html#createCourse">createCourse</a></li><li><a href="global.html#editClicked">editClicked</a></li><li><a href="global.html#editCourse">editCourse</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleLogin">handleLogin</a></li><li><a href="global.html#handleLogout">handleLogout</a></li><li><a href="global.html#handleSignup">handleSignup</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginComponent">LoginComponent</a></li><li><a href="global.html#ModuleCard">ModuleCard</a></li><li><a href="global.html#saveEdits">saveEdits</a></li><li><a href="global.html#viewClicked">viewClicked</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 19:14:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

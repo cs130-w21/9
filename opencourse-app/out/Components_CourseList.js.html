@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/CourseList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/CourseList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Link from "@material-ui/core/Link";
+import logo from "../OpenCourse.svg";
+import history from "../history.js";
+import CourseListModel from "../Models/CourseListModel.js";
+import Box from "@material-ui/core/Box";
+import CreateEditModel from "../Models/createEditCourseModel.js";
+
+function Copyright() {
+  return (
+    &lt;Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      &lt;Link color="inherit" href="https://material-ui.com/">
+        OpenCourse
+      &lt;/Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    &lt;/Typography>
+  );
+}
+
+/**
+ * When an individual course's view button is clicked, pushes 
+ * that state onto the history stack to be able to return back.
+ * @function viewClicked  
+ * @param {int} albumNum - Identifying number to distinguish each course within course album layout.
+ */
+function viewClicked(albumNum) {
+  history.push({
+    pathname: "/CoursePage",
+    state: { detail: albumNum },
+  });
+}
+/**
+ * When an individual course's edit button is clicked, pushes 
+ * that state onto the history stack to be able to return back.
+ * @function editClicked 
+ * @param {int} albumNum - Identifying number to distinguish each course within course album layout.
+ */
+function editClicked(albumNum) {
+  console.log("edit Clicked");
+  history.push({
+    pathname: "/createEdit",
+    state: { detail: albumNum },
+  });
+}
+
+/**
+ * When create button is clicked, pushes the path onto the history stack.
+ * @function createClicked 
+ */
+function createClicked() {
+  console.log("create Clicked");
+  history.push({
+    pathname: "/createEdit",
+  });
+}
+
+const useStyles = makeStyles((theme) => ({
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: 15,
+  },
+  cardMedia: {
+    paddingTop: "56.25%", // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
+  },
+}));
+
+const courseListModel = new CourseListModel();
+const courseCreateModel = new CreateEditModel();
+
+/**
+ * Main component that renders an HTML web-page for the course list homepage.
+ * @function  CourseList
+ * @returns Rendered HTML home page with list of courses to choose from.
+ */
+export default function CourseList({ handleLogout }) {
+  const classes = useStyles();
+  const [issues, setIssues] = useState([]);
+  const getIssues = async () => {
+    try {
+      const data = await courseListModel.getData();
+      setIssues(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  function createCourse(
+    courseId,
+    courseAuthor,
+    courseDate,
+    courseDescription,
+    courseLength,
+    courseName,
+    courseBody
+  ) {
+    courseCreateModel.createCourse(
+      courseId,
+      courseAuthor,
+      courseDate,
+      courseDescription,
+      courseLength,
+      courseName,
+      courseBody
+    );
+  }
+
+  function editCourse(courseId, courseBody) {
+    courseCreateModel.editCourse(courseId, courseBody);
+  }
+  useEffect(() => {
+    getIssues();
+  }, []);
+  return (
+    &lt;React.Fragment>
+      &lt;style>{"body { background-color: gray; }"}&lt;/style>
+      &lt;main>
+        &lt;button onClick={handleLogout}>Logout&lt;/button>
+        {/* Hero unit */}
+        &lt;div className={classes.heroContent}>
+          &lt;Container maxWidth="sm">
+            &lt;img src={logo} alt="Logo" />
+          &lt;/Container>
+          &lt;Box textAlign="center">
+            &lt;Button variant="contained" onClick={createClicked}>
+              Add Course
+            &lt;/Button>
+          &lt;/Box>
+        &lt;/div>
+        &lt;Container className={classes.cardGrid} maxWidth="md">
+          {/* End hero unit */}
+          &lt;Grid container spacing={4}>
+            {issues.map((card) => (
+              &lt;Grid item key={card.name} xs={12} sm={6} md={4}>
+                &lt;Card className={classes.card}>
+                  &lt;CardMedia
+                    className={classes.cardMedia}
+                    image={logo}
+                    title="Image title"
+                  />
+                  &lt;CardContent className={classes.cardContent}>
+                    &lt;Typography gutterBottom variant="h5" component="h2">
+                      {card.name}
+                    &lt;/Typography>
+                    &lt;Typography>{card.description}&lt;/Typography>
+                  &lt;/CardContent>
+                  &lt;CardActions>
+                    &lt;Button
+                      size="small"
+                      color="primary"
+                      onClick={() => {
+                        return viewClicked(card.course_id);
+                      }}
+                    >
+                      View
+                    &lt;/Button>
+                    &lt;Button
+                      size="small"
+                      color="primary"
+                      onClick={() => {
+                        return editClicked(card.course_id);
+                      }}
+                    >
+                      Edit
+                    &lt;/Button>
+                  &lt;/CardActions>
+                &lt;/Card>
+              &lt;/Grid>
+            ))}
+          &lt;/Grid>
+        &lt;/Container>
+      &lt;/main>
+      {/* Footer */}
+      &lt;footer className={classes.footer}>
+        &lt;Typography
+          variant="subtitle1"
+          align="center"
+          color="textSecondary"
+          component="p"
+        >
+          CS130 Group 9
+        &lt;/Typography>
+        &lt;Copyright />
+      &lt;/footer>
+      {/* End footer */}
+    &lt;/React.Fragment>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li><li><a href="CourseListModel.html">CourseListModel</a></li><li><a href="CoursePageModel.html">CoursePageModel</a></li><li><a href="CreateEditModel.html">CreateEditModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authListener">authListener</a></li><li><a href="global.html#CourseList">CourseList</a></li><li><a href="global.html#CoursePage">CoursePage</a></li><li><a href="global.html#CreateAndEdit">CreateAndEdit</a></li><li><a href="global.html#createClicked">createClicked</a></li><li><a href="global.html#createCourse">createCourse</a></li><li><a href="global.html#editClicked">editClicked</a></li><li><a href="global.html#editCourse">editCourse</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleLogin">handleLogin</a></li><li><a href="global.html#handleLogout">handleLogout</a></li><li><a href="global.html#handleSignup">handleSignup</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginComponent">LoginComponent</a></li><li><a href="global.html#ModuleCard">ModuleCard</a></li><li><a href="global.html#saveEdits">saveEdits</a></li><li><a href="global.html#viewClicked">viewClicked</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 19:14:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
