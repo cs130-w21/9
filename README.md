@@ -18,7 +18,7 @@ In the main project directory of your local machine's copy, run:
 **npm test**
 to run all the test cases, both frontend and backend.
 
-Running OpenCourse:
+Run:
 
 Simply run the command:
 **npm start**
