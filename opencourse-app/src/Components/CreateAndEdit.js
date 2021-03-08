@@ -23,6 +23,12 @@ import createEditCourseModel from "../Models/createEditCourseModel.js";
 const coursePageModel = new CoursePageModel();
 const createEditModel = new createEditCourseModel();
 
+/**
+ * Renders the creating a course page and editing page that allows users 
+ * to click on the repsective button and make the appropriate changes.
+ * @function CreateAndEdit
+ * @returns An HTML component for the respective creating and editing pages.
+ */
 export default function CreateAndEdit() {
   const classes = useStyles();
   const location = useLocation();
@@ -33,6 +39,11 @@ export default function CreateAndEdit() {
   const [author, setAuthor] = useState();
   const [modules, setModules] = useState([]);
 
+  /**
+   * Fetches data for courses from model file
+   * @function getCourse 
+   * @returns Various information pertaining each course such as course name and description.
+   */
   const getCourse = async () => {
     try {
       const data = await coursePageModel.getData(courseId);
@@ -107,6 +118,11 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
     }
 */
 
+/**
+ * Calls model for when user creates a specific course
+ * @function createCourse
+ * @returns Saved course to course list.
+ */
   const createCourse = () => {
     if (!title) {
       alert("You must add a course title!");
@@ -125,6 +141,11 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
     //route back to home
   };
 
+/**
+ * Calls model when user edits a course and routes back to home with newly edited course added to the list.
+ * @function saveEdits
+ * @returns Edited course to course list.
+ */
   const saveEdits = () => {
     if (modules.length == 0) {
       alert("You must add course modules");
@@ -196,7 +217,9 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
       />
     </Grid>
   ));
-
+  /**
+   * Returns wrapped JSX html component for the respective saving and editing pages
+   */
   return (
     <div className={classes.root}>
       <Grid

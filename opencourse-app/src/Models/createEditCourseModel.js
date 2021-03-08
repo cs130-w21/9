@@ -3,11 +3,30 @@ import axios from "axios";
 var headers = {
   "Content-Type": "application/json",
 };
+/**
+ * Creating and editing courses passed from the conroller to database.
+ * @class CreateEditModel
+ */
+
 class CreateEditModel {
+  /**
+   * Constructs creating and editing course card.
+   * @constructor 
+   */
   constructor() {
     this.cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   }
 
+  /**
+   * Given course information, will create a course in the database.
+   * @method createCourse 
+   * @param {string} courseAuthor - Author of Course.
+   * @param {string} courseDescription - Description of course to be created.
+   * @param {string} courseLength - Length of Course to be created.
+   * @param {string} courseName - Name of course to be created.
+   * @param {Object[]} courseBody - Array of modules.
+   * @returns A newly generated or edited course.
+   */
   createCourse = async (
     courseAuthor,
     courseDescription,
@@ -45,6 +64,13 @@ class CreateEditModel {
     }
   };
 
+  /**
+   * Given course ID and body, adds modules to given course in database.
+   * @method editCourse
+   * @param {int} courseId - Course distinguisher.
+   * @param {Object[]} courseBody - Array of Modules.
+   * @returns A new course module.
+   */
   editCourse = async (courseId, courseBody) => {
     var dataBody = {};
     try {

@@ -1,7 +1,11 @@
 import React from 'react';
 
 
-
+/**
+ * Login Page that allows users to login for accessing OpenCourse.
+ * @function  LoginComponent
+ * @returns HTML component for login authorization.
+ */
 const LoginComponent = (props) => {
     const {email, 
     setEmail,

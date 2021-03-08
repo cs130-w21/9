@@ -6,7 +6,9 @@ const router = express.Router();
 const db = firebase.firestore();
 const coursesRef = db.collection("course");
 
-
+/**
+ * Routes to return an array of course objects.
+ */
 router.route("/").get(function (req, res) {
   	coursesRef.get().then((snapshot) => {
 		const data = snapshot.docs.map((doc) => ({
@@ -17,6 +19,9 @@ router.route("/").get(function (req, res) {
 	});
 });
 
+/**
+ * Given an ID, returns a course object.
+ */
 router.route("/:id").get(function (req, res) {
   	coursesRef.get().then((snapshot) => {
 		const data = snapshot.docs.map((doc) => ({
@@ -35,6 +40,9 @@ router.route("/:id").get(function (req, res) {
 	});
 });
 
+/**
+ * Route to create a course.
+ */
 router.route("/create").post((req, res) => {
 	console.log("req.body", req.body);
 	var authE = false;

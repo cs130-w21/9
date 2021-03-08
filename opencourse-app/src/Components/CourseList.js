@@ -28,13 +28,24 @@ function Copyright() {
   );
 }
 
+/**
+ * When an individual course's view button is clicked, pushes 
+ * that state onto the history stack to be able to return back.
+ * @function viewClicked  
+ * @param {int} albumNum - Identifying number to distinguish each course within course album layout.
+ */
 function viewClicked(albumNum) {
   history.push({
     pathname: "/CoursePage",
     state: { detail: albumNum },
   });
 }
-
+/**
+ * When an individual course's edit button is clicked, pushes 
+ * that state onto the history stack to be able to return back.
+ * @function editClicked 
+ * @param {int} albumNum - Identifying number to distinguish each course within course album layout.
+ */
 function editClicked(albumNum) {
   console.log("edit Clicked");
   history.push({
@@ -43,6 +54,10 @@ function editClicked(albumNum) {
   });
 }
 
+/**
+ * When create button is clicked, pushes the path onto the history stack.
+ * @function createClicked 
+ */
 function createClicked() {
   console.log("create Clicked");
   history.push({
@@ -85,6 +100,12 @@ const useStyles = makeStyles((theme) => ({
 
 const courseListModel = new CourseListModel();
 const courseCreateModel = new CreateEditModel();
+
+/**
+ * Main component that renders an HTML web-page for the course list homepage.
+ * @function  CourseList
+ * @returns Rendered HTML home page with list of courses to choose from.
+ */
 export default function CourseList({ handleLogout }) {
   const classes = useStyles();
   const [issues, setIssues] = useState([]);

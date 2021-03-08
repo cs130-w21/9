@@ -3,6 +3,11 @@ import fire from './fire'
 import LoginComponent from './Components/LoginComponent';
 import CourseList from './Components/CourseList';
 
+/**
+ * Renders login page or course list.
+ * @function Login
+ * @returns HTML component
+ */
 export default function Login() {
     const [user, setUser] = useState('');
     const [email, setEmail] = useState('');
@@ -19,6 +24,10 @@ export default function Login() {
         setPassWordError('');
     }
 
+    /**
+     * Uses firebase authentication to login user.
+     * @function handleLogin
+     */
 const handleLogin = () => {
     clearErrors();
     fire.auth().signInWithEmailAndPassword(email, password).catch(err => {
@@ -34,6 +43,10 @@ const handleLogin = () => {
         }
     });
 };
+    /**
+     * Uses firebase authentication to sign up user.
+     * @function handleSignup
+     */
 const handleSignup = () => {
     clearErrors();
     fire.auth().createUserWithEmailAndPassword(email, password).catch(err => {
@@ -48,11 +61,18 @@ const handleSignup = () => {
         }
     });
 };
-
+/**
+     * Uses firebase authentication to log user out.
+     * @function handleLogout
+     */
 const handleLogout = () => {
     fire.auth().signOut();
 }
 
+  /**
+     * Uses firebase authentication to check if user is logged in.
+     * @function authListener
+     */
 const authListener = () => {
     fire.auth().onAuthStateChanged(user => {
         if (user){

@@ -99,6 +99,11 @@ const useStyles = makeStyles((theme) => ({
 
 const coursePageModel = new CoursePageModel();
 
+/**
+ * Main component that renders an HTML web-page for the individual course page.
+ * @function  CoursePage
+ * @returns Rendered HTML individual course page with course sections to choose from.
+ */
 export default function CoursePage() {
   const location = useLocation();
   const courseId = location.state.detail;
