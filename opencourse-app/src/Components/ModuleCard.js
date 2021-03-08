@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -8,7 +8,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 /**
@@ -17,11 +16,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
  * @returns New HTML component for course module.
  */
 export default function ModuleCard(props) {
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-  const [link, setLink] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
-
   return (
     <Card>
       <CardHeader

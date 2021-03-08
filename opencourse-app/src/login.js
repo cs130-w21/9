@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import fire from "./fire";
 import LoginComponent from "./Components/LoginComponent";
 import CourseList from "./Components/CourseList";
-import { Container, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 /**
  * Renders login page or course list.
@@ -44,6 +44,8 @@ const handleLogin = () => {
           case "auth/wrong-password":
             setPassWordError(err.message);
             break;
+          default:
+            console.log("Default case hit");
         }
     });
 };
@@ -65,6 +67,8 @@ const handleSignup = () => {
           case "auth/weak-password":
             setPassWordError(err.message);
             break;
+          default:
+            console.log("Default case hit");
         }
     });
 };
@@ -85,7 +89,6 @@ const authListener = () => {
         if (user){
             clearInputs();
             setUser(user);
-            console.log(user);
         }else{
             setUser("");
         }
@@ -95,7 +98,7 @@ const authListener = () => {
 
   useEffect(() => {
     authListener();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
