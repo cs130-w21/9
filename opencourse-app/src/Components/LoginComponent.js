@@ -1,6 +1,12 @@
-import React from "react";
+import React from 'react';
 import { TextField, Button } from "@material-ui/core";
 
+
+/**
+ * Login Page that allows users to login for accessing OpenCourse.
+ * @function  LoginComponent
+ * @returns HTML component for login authorization.
+ */
 const LoginComponent = (props) => {
   const {
     email,

@@ -1,4 +1,32 @@
-import React, { useState, useEffect } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/CourseList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/CourseList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -17,14 +45,14 @@ import CreateEditModel from "../Models/createEditCourseModel.js";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    &lt;Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      &lt;Link color="inherit" href="https://material-ui.com/">
         OpenCourse
-      </Link>{" "}
+      &lt;/Link>{" "}
       {new Date().getFullYear()}
       {"."}
-    </Typography>
+    &lt;/Typography>
   );
 }
 
@@ -145,40 +173,40 @@ export default function CourseList({ handleLogout }) {
     getIssues();
   }, []);
   return (
-    <React.Fragment>
-      <style>{"body { background-color: gray; }"}</style>
-      <main>
-        <button onClick={handleLogout}>Logout</button>
+    &lt;React.Fragment>
+      &lt;style>{"body { background-color: gray; }"}&lt;/style>
+      &lt;main>
+        &lt;button onClick={handleLogout}>Logout&lt;/button>
         {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <img src={logo} alt="Logo" />
-          </Container>
-          <Box textAlign="center">
-            <Button variant="contained" onClick={createClicked}>
+        &lt;div className={classes.heroContent}>
+          &lt;Container maxWidth="sm">
+            &lt;img src={logo} alt="Logo" />
+          &lt;/Container>
+          &lt;Box textAlign="center">
+            &lt;Button variant="contained" onClick={createClicked}>
               Add Course
-            </Button>
-          </Box>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
+            &lt;/Button>
+          &lt;/Box>
+        &lt;/div>
+        &lt;Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
-          <Grid container spacing={4}>
+          &lt;Grid container spacing={4}>
             {issues.map((card) => (
-              <Grid item key={card.name} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
+              &lt;Grid item key={card.name} xs={12} sm={6} md={4}>
+                &lt;Card className={classes.card}>
+                  &lt;CardMedia
                     className={classes.cardMedia}
                     image={logo}
                     title="Image title"
                   />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                  &lt;CardContent className={classes.cardContent}>
+                    &lt;Typography gutterBottom variant="h5" component="h2">
                       {card.name}
-                    </Typography>
-                    <Typography>{card.description}</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
+                    &lt;/Typography>
+                    &lt;Typography>{card.description}&lt;/Typography>
+                  &lt;/CardContent>
+                  &lt;CardActions>
+                    &lt;Button
                       size="small"
                       color="primary"
                       onClick={() => {
@@ -186,8 +214,8 @@ export default function CourseList({ handleLogout }) {
                       }}
                     >
                       View
-                    </Button>
-                    <Button
+                    &lt;/Button>
+                    &lt;Button
                       size="small"
                       color="primary"
                       onClick={() => {
@@ -195,27 +223,50 @@ export default function CourseList({ handleLogout }) {
                       }}
                     >
                       Edit
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
+                    &lt;/Button>
+                  &lt;/CardActions>
+                &lt;/Card>
+              &lt;/Grid>
             ))}
-          </Grid>
-        </Container>
-      </main>
+          &lt;/Grid>
+        &lt;/Container>
+      &lt;/main>
       {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography
+      &lt;footer className={classes.footer}>
+        &lt;Typography
           variant="subtitle1"
           align="center"
           color="textSecondary"
           component="p"
         >
           CS130 Group 9
-        </Typography>
-        <Copyright />
-      </footer>
+        &lt;/Typography>
+        &lt;Copyright />
+      &lt;/footer>
       {/* End footer */}
-    </React.Fragment>
+    &lt;/React.Fragment>
   );
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li><li><a href="CourseListModel.html">CourseListModel</a></li><li><a href="CoursePageModel.html">CoursePageModel</a></li><li><a href="CreateEditModel.html">CreateEditModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authListener">authListener</a></li><li><a href="global.html#CourseList">CourseList</a></li><li><a href="global.html#CoursePage">CoursePage</a></li><li><a href="global.html#CreateAndEdit">CreateAndEdit</a></li><li><a href="global.html#createClicked">createClicked</a></li><li><a href="global.html#createCourse">createCourse</a></li><li><a href="global.html#editClicked">editClicked</a></li><li><a href="global.html#editCourse">editCourse</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleLogin">handleLogin</a></li><li><a href="global.html#handleLogout">handleLogout</a></li><li><a href="global.html#handleSignup">handleSignup</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginComponent">LoginComponent</a></li><li><a href="global.html#ModuleCard">ModuleCard</a></li><li><a href="global.html#saveEdits">saveEdits</a></li><li><a href="global.html#viewClicked">viewClicked</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 19:14:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

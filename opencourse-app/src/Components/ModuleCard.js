@@ -11,6 +11,11 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+/**
+ * For new module that is added in the edit course page.
+ * @function  ModuleCard
+ * @returns New HTML component for course module.
+ */
 export default function ModuleCard(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");

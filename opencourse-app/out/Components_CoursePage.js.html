@@ -1,4 +1,32 @@
-import React, { useState, useEffect } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/CoursePage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/CoursePage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -15,14 +43,14 @@ import CardHeader from "@material-ui/core/CardHeader";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="primary" align="center">
+    &lt;Typography variant="body2" color="primary" align="center">
       {"Copyright © "}
-      <Link color="primary" href="https://material-ui.com/">
+      &lt;Link color="primary" href="https://material-ui.com/">
         OpenCourse
-      </Link>{" "}
+      &lt;/Link>{" "}
       {new Date().getFullYear()}
       {"."}
-    </Typography>
+    &lt;/Typography>
   );
 }
 
@@ -61,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0 3px 5px 2px rgba(20, 10, 15, .3)",
     transition: "0.6s",
     backgroundImage: "linear-gradient(45deg, #CCC8CD, #CCC8CD, #3e4551)",
-    "&:hover": {
+    "&amp;:hover": {
       backgroundPosition: "right",
       raised: true,
       shadow: 3,
@@ -124,7 +152,6 @@ export default function CoursePage() {
       if (data.description !== undefined) {
         setDescription(data.description);
       }
-
       if (data.name !== undefined) {
         setTitle(data.name);
       }
@@ -138,19 +165,19 @@ export default function CoursePage() {
   }, []);
 
   return (
-    <React.Fragment>
-      <style>{"body { background-color:  #F0EEF1; }"}</style>
-      <main>
-        <div className={classes.root} variant="outlined"></div>
+    &lt;React.Fragment>
+      &lt;style>{"body { background-color:  #F0EEF1; }"}&lt;/style>
+      &lt;main>
+        &lt;div className={classes.root} variant="outlined">&lt;/div>
 
-        <img
+        &lt;img
           src={logo}
           alt="Logo"
           width="140"
           height="130"
           style={{ float: "left" }}
         />
-        <h1
+        &lt;h1
           style={{
             textAlign: "center",
             fontFamily: "Times New Roman",
@@ -162,15 +189,15 @@ export default function CoursePage() {
         >
           {" "}
           {title}
-        </h1>
+        &lt;/h1>
 
         {/* Hero unit */}
-        <div className={classes.cardContent}>
-          <Container maxWidth="xl">
-            <div></div>
-          </Container>
-          <div>
-            <h5
+        &lt;div className={classes.cardContent}>
+          &lt;Container maxWidth="xl">
+            &lt;div>&lt;/div>
+          &lt;/Container>
+          &lt;div>
+            &lt;h5
               style={{
                 textAlign: "center",
                 fontFamily: "Times New Roman",
@@ -181,29 +208,29 @@ export default function CoursePage() {
               }}
             >
               Course Description {description}
-            </h5>
-          </div>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
+            &lt;/h5>
+          &lt;/div>
+        &lt;/div>
+        &lt;Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
 
-          <Grid container spacing={9}>
+          &lt;Grid container spacing={9}>
             {modules.length > 0 ? (
               modules.map((card) => (
-                <Grid item key={card} xs={1} sm={4} md={9}>
-                  <Card className={classes.card}>
-                    <CardHeader
+                &lt;Grid item key={card} xs={1} sm={4} md={9}>
+                  &lt;Card className={classes.card}>
+                    &lt;CardHeader
                       title={card.title}
                       // subheader="September 14, 2016"
                     />
-                    <CardContent className={classes.cardContent}>
-                      <Typography gutterBottom variant="h3" component="h3">
+                    &lt;CardContent className={classes.cardContent}>
+                      &lt;Typography gutterBottom variant="h3" component="h3">
                         {card.id}
-                      </Typography>
-                      <Typography>{card.description}</Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button
+                      &lt;/Typography>
+                      &lt;Typography>{card.description}&lt;/Typography>
+                    &lt;/CardContent>
+                    &lt;CardActions>
+                      &lt;Button
                         href={card.link}
                         target="_blank"
                         variant="outlined"
@@ -216,37 +243,57 @@ export default function CoursePage() {
                         }}
                       >
                         Learn
-                      </Button>
-                      {/*<Button variant = "outlined" size="medium" style ={{backgroundColor: '#f10849', borderRadius: '5px', color: 'white'}}>
+                      &lt;/Button>
+                      {/*&lt;Button variant = "outlined" size="medium" style ={{backgroundColor: '#f10849', borderRadius: '5px', color: 'white'}}>
                         Completed
-                      </Button> */}
-                    </CardActions>
-                  </Card>
-                </Grid>
-
+                      &lt;/Button> */}
+                    &lt;/CardActions>
+                  &lt;/Card>
+                &lt;/Grid>
               ))
             ) : (
-              <Typography>No modules for this course</Typography>
+              &lt;Typography>No modules for this course&lt;/Typography>
             )}
-          </Grid>
-        </Container>
-      </main>
+          &lt;/Grid>
+        &lt;/Container>
+      &lt;/main>
 
-      {/* Footer efeffe*/}
-      {/*new comment */}
-      <footer className={classes.footer}>
-        <Typography
+      {/* Footer */}
+      &lt;footer className={classes.footer}>
+        &lt;Typography
           variant="subtitle1"
           align="center"
           color="textSecondary"
           component="p"
         >
           CS130 Group 9
-        </Typography>
-        <Copyright />
-      </footer>
+        &lt;/Typography>
+        &lt;Copyright />
+      &lt;/footer>
       {/* End footer */}
-    </React.Fragment>
-
+    &lt;/React.Fragment>
   );
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li><li><a href="CourseListModel.html">CourseListModel</a></li><li><a href="CoursePageModel.html">CoursePageModel</a></li><li><a href="CreateEditModel.html">CreateEditModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authListener">authListener</a></li><li><a href="global.html#CourseList">CourseList</a></li><li><a href="global.html#CoursePage">CoursePage</a></li><li><a href="global.html#CreateAndEdit">CreateAndEdit</a></li><li><a href="global.html#createClicked">createClicked</a></li><li><a href="global.html#createCourse">createCourse</a></li><li><a href="global.html#editClicked">editClicked</a></li><li><a href="global.html#editCourse">editCourse</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleLogin">handleLogin</a></li><li><a href="global.html#handleLogout">handleLogout</a></li><li><a href="global.html#handleSignup">handleSignup</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginComponent">LoginComponent</a></li><li><a href="global.html#ModuleCard">ModuleCard</a></li><li><a href="global.html#saveEdits">saveEdits</a></li><li><a href="global.html#viewClicked">viewClicked</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 19:14:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

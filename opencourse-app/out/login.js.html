@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: login.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: login.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState, useEffect} from "react";
+import fire from './fire'
+import LoginComponent from './Components/LoginComponent';
+import CourseList from './Components/CourseList';
+
+/**
+ * Renders login page or course list.
+ * @function Login
+ * @returns HTML component
+ */
+export default function Login() {
+    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPassWordError] = useState('');
+    const [hasAccount, setHasAccount] = useState(false);
+    const clearInputs = () => {
+        setEmailError("");
+        setPassword("");
+    }
+    const clearErrors = () => {
+        setEmailError('');
+        setPassWordError('');
+    }
+
+    /**
+     * Uses firebase authentication to login user.
+     * @function handleLogin
+     */
+const handleLogin = () => {
+    clearErrors();
+    fire.auth().signInWithEmailAndPassword(email, password).catch(err => {
+        switch(err.code){
+            case "auth/invalid-email":
+            case "auth/user-disabled":
+            case "auth/user-not-found":
+                setEmailError(err.message);
+                break;
+            case "auth/wrong-password":
+                setPassWordError(err.message);
+                break;
+        }
+    });
+};
+    /**
+     * Uses firebase authentication to sign up user.
+     * @function handleSignup
+     */
+const handleSignup = () => {
+    clearErrors();
+    fire.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+        switch(err.code){
+            case "auth/email-already-in-use":
+            case "auth/invalid-email":
+                setEmailError(err.message);
+                break;
+            case "auth/weak-password":
+                setPassWordError(err.message);
+                break;
+        }
+    });
+};
+/**
+     * Uses firebase authentication to log user out.
+     * @function handleLogout
+     */
+const handleLogout = () => {
+    fire.auth().signOut();
+}
+
+  /**
+     * Uses firebase authentication to check if user is logged in.
+     * @function authListener
+     */
+const authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+        if (user){
+            clearInputs();
+            setUser(user);
+            console.log(user);
+        }else{
+            setUser("");
+        }
+
+    });
+};
+
+useEffect(() => {
+    authListener();
+},[]);
+
+    return (
+        &lt;div>
+            {user ? (
+                &lt;CourseList handleLogout={handleLogout}/>
+            ) : (&lt;LoginComponent 
+                email={email} 
+                setEmail={setEmail} 
+                password={password} 
+                setPassword={setPassword} 
+                handleLogin={handleLogin} 
+                handleSignup={handleSignup} 
+                hasAccount={hasAccount} 
+                setHasAccount={setHasAccount} 
+                emailError={emailError} 
+                passwordError={passwordError} />)
+            }
+        &lt;/div>
+    );
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li><li><a href="CourseListModel.html">CourseListModel</a></li><li><a href="CoursePageModel.html">CoursePageModel</a></li><li><a href="CreateEditModel.html">CreateEditModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authListener">authListener</a></li><li><a href="global.html#CourseList">CourseList</a></li><li><a href="global.html#CoursePage">CoursePage</a></li><li><a href="global.html#CreateAndEdit">CreateAndEdit</a></li><li><a href="global.html#createClicked">createClicked</a></li><li><a href="global.html#createCourse">createCourse</a></li><li><a href="global.html#editClicked">editClicked</a></li><li><a href="global.html#editCourse">editCourse</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleLogin">handleLogin</a></li><li><a href="global.html#handleLogout">handleLogout</a></li><li><a href="global.html#handleSignup">handleSignup</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginComponent">LoginComponent</a></li><li><a href="global.html#ModuleCard">ModuleCard</a></li><li><a href="global.html#saveEdits">saveEdits</a></li><li><a href="global.html#viewClicked">viewClicked</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 19:14:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

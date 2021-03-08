@@ -4,6 +4,11 @@ import LoginComponent from "./Components/LoginComponent";
 import CourseList from "./Components/CourseList";
 import { Container, Grid } from "@material-ui/core";
 
+/**
+ * Renders login page or course list.
+ * @function Login
+ * @returns HTML component
+ */
 export default function Login() {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +25,11 @@ export default function Login() {
     setPassWordError("");
   };
 
-  const handleLogin = () => {
+    /**
+     * Uses firebase authentication to login user.
+     * @function handleLogin
+     */
+const handleLogin = () => {
     clearErrors();
     fire
       .auth()
@@ -36,9 +45,13 @@ export default function Login() {
             setPassWordError(err.message);
             break;
         }
-      });
-  };
-  const handleSignup = () => {
+    });
+};
+    /**
+     * Uses firebase authentication to sign up user.
+     * @function handleSignup
+     */
+const handleSignup = () => {
     clearErrors();
     fire
       .auth()
@@ -53,24 +66,32 @@ export default function Login() {
             setPassWordError(err.message);
             break;
         }
-      });
-  };
-
-  const handleLogout = () => {
-    fire.auth().signOut();
-  };
-
-  const authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        clearInputs();
-        setUser(user);
-        console.log(user);
-      } else {
-        setUser("");
-      }
     });
-  };
+};
+/**
+     * Uses firebase authentication to log user out.
+     * @function handleLogout
+     */
+const handleLogout = () => {
+    fire.auth().signOut();
+}
+
+  /**
+     * Uses firebase authentication to check if user is logged in.
+     * @function authListener
+     */
+const authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+        if (user){
+            clearInputs();
+            setUser(user);
+            console.log(user);
+        }else{
+            setUser("");
+        }
+    });
+};
+  
 
   useEffect(() => {
     authListener();

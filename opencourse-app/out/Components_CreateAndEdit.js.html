@@ -1,4 +1,32 @@
-import React, { useState, useEffect } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/CreateAndEdit.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/CreateAndEdit.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import history from "../history.js";
 import TextField from "@material-ui/core/TextField";
@@ -30,7 +58,6 @@ const createEditModel = new createEditCourseModel();
  * @returns An HTML component for the respective creating and editing pages.
  */
 export default function CreateAndEdit() {
-
   const classes = useStyles();
   const location = useLocation();
   const courseId = location.state ? location.state.detail : undefined; //undefined if creating course
@@ -199,7 +226,6 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
     });
 
     setModules(list);
-    
   };
 
   const deleteModule = (id) => {
@@ -210,29 +236,28 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
   };
 
   const modulesList = modules.map((module, index) => (
-    <Grid item key={index} className={classes.moduleCard}>
-      <ModuleCard
+    &lt;Grid item key={index} className={classes.moduleCard}>
+      &lt;ModuleCard
         index={index}
         module={module}
         deleteModule={deleteModule}
         openModal={handleOpen}
       />
-    </Grid>
+    &lt;/Grid>
   ));
   /**
    * Returns wrapped JSX html component for the respective saving and editing pages
    */
   return (
-    <div className={classes.root}>
-      <Grid
+    &lt;div className={classes.root}>
+      &lt;Grid
         container
         direction="column"
         alignItems="center"
         height="100vh"
         className={classes.grid}
-        data-testid = "addmoduleextension"
       >
-        <Modal
+        &lt;Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="simple-modal-title"
@@ -243,19 +268,17 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
             justifyContent: "center",
             alignItems: "center",
           }}
-	  
         >
-          <div className={classes.paper}>
-            <TextField
+          &lt;div className={classes.paper}>
+            &lt;TextField
               id="outlined-basic"
               label="Module Title"
               variant="outlined"
               defaultValue={currModule.title}
               style={{ margin: "1%" }}
-              onChange={handleModuleTitleChange } 
-	      
+              onChange={handleModuleTitleChange}
             />
-            <TextField
+            &lt;TextField
               id="outlined-basic"
               label="Module Description"
               variant="outlined"
@@ -265,7 +288,7 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
               multiline
               rows={4}
             />
-            <TextField
+            &lt;TextField
               id="outlined-basic"
               label="Module Link"
               variant="outlined"
@@ -273,11 +296,11 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
               style={{ margin: "1%" }}
               onChange={handleModuleLinkChange}
             />
-          </div>
-        </Modal>
-        <Grid item className={classes.submitButton}>
+          &lt;/div>
+        &lt;/Modal>
+        &lt;Grid item className={classes.submitButton}>
           {editing ? (
-            <Button
+            &lt;Button
               variant="contained"
               style={{
                 background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -287,9 +310,9 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
               onClick={saveEdits}
             >
               Save Changes
-            </Button>
+            &lt;/Button>
           ) : (
-            <Button
+            &lt;Button
               variant="contained"
               style={{
                 background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -299,14 +322,14 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
               onClick={createCourse}
             >
               Create Course
-            </Button>
+            &lt;/Button>
           )}
-        </Grid>
-        <Grid item style={{ width: "90%" }}>
-          <Typography variant="h4">Course Title:</Typography>
-        </Grid>
-        <Grid item className={classes.gridItem}>
-          <TextField
+        &lt;/Grid>
+        &lt;Grid item style={{ width: "90%" }}>
+          &lt;Typography variant="h4">Course Title:&lt;/Typography>
+        &lt;/Grid>
+        &lt;Grid item className={classes.gridItem}>
+          &lt;TextField
             className={classes.textInput}
             id="outlined-basic"
             label="Course Title"
@@ -314,12 +337,12 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-        </Grid>
-        <Grid item style={{ width: "90%" }}>
-          <Typography variant="h6">Course Author:</Typography>
-        </Grid>
-        <Grid item className={classes.gridItem} style={{ marginTop: "1%" }}>
-          <TextField
+        &lt;/Grid>
+        &lt;Grid item style={{ width: "90%" }}>
+          &lt;Typography variant="h6">Course Author:&lt;/Typography>
+        &lt;/Grid>
+        &lt;Grid item className={classes.gridItem} style={{ marginTop: "1%" }}>
+          &lt;TextField
             className={classes.textInput}
             id="outlined-basic"
             label="Course Author"
@@ -327,12 +350,12 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
             defaultValue={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
-        </Grid>
-        <Grid item style={{ width: "90%" }}>
-          <Typography variant="h6">Course Description:</Typography>
-        </Grid>
-        <Grid item className={classes.gridItem} style={{ marginTop: "1%" }}>
-          <TextField
+        &lt;/Grid>
+        &lt;Grid item style={{ width: "90%" }}>
+          &lt;Typography variant="h6">Course Description:&lt;/Typography>
+        &lt;/Grid>
+        &lt;Grid item className={classes.gridItem} style={{ marginTop: "1%" }}>
+          &lt;TextField
             className={classes.textInput}
             id="outlined-basic"
             label="Course Decription"
@@ -342,15 +365,15 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
             rows={4}
             onChange={(e) => setDesc(e.target.value)}
           />
-        </Grid>
-        <Grid item style={{ width: "90%" }}>
-          <Typography variant="h6">Course Modules:</Typography>
-        </Grid>
-        <Grid container direction="column" alignItems="center">
+        &lt;/Grid>
+        &lt;Grid item style={{ width: "90%" }}>
+          &lt;Typography variant="h6">Course Modules:&lt;/Typography>
+        &lt;/Grid>
+        &lt;Grid container direction="column" alignItems="center">
           {modulesList}
-        </Grid>
-        <Grid item>
-          <Button
+        &lt;/Grid>
+        &lt;Grid item>
+          &lt;Button
             style={{
               margin: 20,
               // background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -360,13 +383,12 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
             onClick={newModule}
             variant="outlined"
             color="primary"
-            data-testid="addmodulebutton"
           >
             Add Module
-          </Button>
-        </Grid>
-      </Grid>
-    </div>
+          &lt;/Button>
+        &lt;/Grid>
+      &lt;/Grid>
+    &lt;/div>
   );
 }
 
@@ -409,3 +431,26 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 3,
   },
 }));
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="constructor.html">constructor</a></li><li><a href="CourseListModel.html">CourseListModel</a></li><li><a href="CoursePageModel.html">CoursePageModel</a></li><li><a href="CreateEditModel.html">CreateEditModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authListener">authListener</a></li><li><a href="global.html#CourseList">CourseList</a></li><li><a href="global.html#CoursePage">CoursePage</a></li><li><a href="global.html#CreateAndEdit">CreateAndEdit</a></li><li><a href="global.html#createClicked">createClicked</a></li><li><a href="global.html#createCourse">createCourse</a></li><li><a href="global.html#editClicked">editClicked</a></li><li><a href="global.html#editCourse">editCourse</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleLogin">handleLogin</a></li><li><a href="global.html#handleLogout">handleLogout</a></li><li><a href="global.html#handleSignup">handleSignup</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#LoginComponent">LoginComponent</a></li><li><a href="global.html#ModuleCard">ModuleCard</a></li><li><a href="global.html#saveEdits">saveEdits</a></li><li><a href="global.html#viewClicked">viewClicked</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 19:14:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
