@@ -30,6 +30,7 @@ const createEditModel = new createEditCourseModel();
  * @returns An HTML component for the respective creating and editing pages.
  */
 export default function CreateAndEdit() {
+
   const classes = useStyles();
   const location = useLocation();
   const courseId = location.state ? location.state.detail : undefined; //undefined if creating course
@@ -198,6 +199,7 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
     });
 
     setModules(list);
+    
   };
 
   const deleteModule = (id) => {
@@ -228,6 +230,7 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
         alignItems="center"
         height="100vh"
         className={classes.grid}
+        data-testid = "addmoduleextension"
       >
         <Modal
           open={open}
@@ -240,6 +243,7 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
             justifyContent: "center",
             alignItems: "center",
           }}
+	  
         >
           <div className={classes.paper}>
             <TextField
@@ -248,7 +252,8 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
               variant="outlined"
               defaultValue={currModule.title}
               style={{ margin: "1%" }}
-              onChange={handleModuleTitleChange}
+              onChange={handleModuleTitleChange } 
+	      
             />
             <TextField
               id="outlined-basic"
@@ -355,6 +360,7 @@ Example call createCourse("yaboi", "id", "1 minute", "Abstract", [{title: "link2
             onClick={newModule}
             variant="outlined"
             color="primary"
+            data-testid="addmodulebutton"
           >
             Add Module
           </Button>

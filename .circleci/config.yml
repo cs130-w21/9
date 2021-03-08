@@ -1,0 +1,73 @@
+version: 2.1
+
+defaults: &defaults
+  working_directory: /
+  docker:
+    - image: circleci/node:10.14.2
+
+orbs:
+  node: circleci/node@3.0.0
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.14.2
+    steps:
+    - checkout
+    - run: rm package-lock.json
+    - run: npm install
+    - run: npm install --save firebase
+
+      # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - dependency-cache-{{ checksum "package-lock.json" }}
+        - dependency-cache-
+      
+    - run: npm ci
+    - run: CI= npm run build
+
+    - save_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+
+              #- persist_to_workspace:
+              #root: ~/130-project/9/opencourse-backend
+              #paths:
+              #- node_modules
+              
+  test:
+    docker:
+      - image: circleci/node:10.14.2
+
+    steps:
+    - checkout
+    - run: rm package-lock.json
+    - run: npm install
+    - run: npm install --save firebase
+
+      # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - dependency-cache-{{ checksum "package-lock.json" }}
+        - dependency-cache-
+
+    - run: npm ci
+      #- run: kill $(lsof -t -i:4000) && kill $(lsof -t -i:3000)
+    - run: CI= npm test
+
+    - save_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+ 
+
+workflows:
+     build_and_test:
+        jobs:
+          - build
+          -  test
+                  #requires:
+                  #- build
+
