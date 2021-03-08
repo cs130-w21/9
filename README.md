@@ -1,5 +1,3 @@
-[![cs130-w21](https://circleci.com/gh/cs130-w21/9.svg?style=svg)](<LINK>)
-
 Welcome to OpenCourse!
 Read the below information to find out how to locally build, test and run the app.
 
